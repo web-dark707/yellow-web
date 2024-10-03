@@ -1,0 +1,42 @@
+.vip-ui-popup {
+    overflow: hidden;
+    background: linear-gradient(to bottom right, #b8336a, #6d1b3c);
+    border-radius: 16px 16px 0 0;
+
+    .rmc-picker-popup-header {
+        padding: 6px 0;
+        background: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+        .rmc-picker-popup-header-left,
+        .rmc-picker-popup-header-right {
+            color: #fff;
+            font-weight: 600;
+            font-size: 16px;
+            font-style: normal;
+            letter-spacing: 0.092px;
+            text-align: center;
+        }
+
+        .rmc-picker-popup-title {
+            color: #fff;
+            font-weight: 400;
+            font-size: 16px !important;
+            font-style: normal;
+            letter-spacing: 0.092px;
+            text-align: center;
+        }
+
+        .rmc-picker-popup-item {
+            height: 28px;
+            font-size: 14px;
+            line-height: 28px;
+        }
+    }
+}
+
+.hide-header {
+    .rmc-picker-popup-header {
+        display: none;
+    }
+}

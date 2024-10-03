@@ -1,0 +1,68 @@
+{
+    "ui": {
+        "noMore": "没有更多数据了",
+        "loading": "加载中...",
+        "loadError": "加载失败,请重新尝试",
+        "noData": "暂无数据",
+        "confirm": "确定",
+        "cancel": "取消",
+        "reload": "重新加载",
+        "noNetwork": "网络不可用，请检查网络设置",
+        "noAccess": "没有权限访问",
+        "toHome": "返回首页",
+        "pageToExist": "页面不存在",
+        "uploadMaxSheets": "最多上传{{max}}张",
+        "success": "成功",
+        "uploading": "上传中..."
+    },
+    "message": {
+        "success": {
+            "login": "登录成功",
+            "copy": "复制成功",
+            "remove": "移除成功",
+            "code": "发送验证码成功",
+            "transfer": "转账成功",
+            "withdrawal": "预约取款成功",
+            "outCode": "预约出码成功",
+            "password": "密码修改成功"
+        },
+        "info": {
+            "permission": "请开启相机/相册权限",
+            "canNotRecognize": "无法识别此二维码",
+            "plsUploadScreenshot": "请上传截图"
+        },
+        "error": {
+            "login": "登录失败",
+            "copy": "复制失败",
+            "remove": "移除失败",
+            "code": "发送验证码失败",
+            "outCode": "预约出码失败",
+            "transfer": "转账失败",
+            "withdrawal": "预约取款失败",
+            "http400": "请求无效!",
+            "http401": "用户没有权限!",
+            "http403": "用户拒绝访问!",
+            "http404": "找不到资源!",
+            "http405": "请求方法未允许!",
+            "http408": "请求超时!",
+            "http500": "服务器内部错误!",
+            "http501": "服务未实现!",
+            "http502": "网关错误!",
+            "http503": "服务不可用!",
+            "http504": "网关超时!",
+            "http505": "HTTP版本不受支持!",
+            "httpUnknown": "未知错误!"
+        }
+    },
+    "button": {
+        "confirm": "确认",
+        "next": "下一步",
+        "submit": "提交",
+        "remove": "移除",
+        "refused": "拒绝",
+        "upload": "上传",
+        "close": "关闭",
+        "reUpload": "重新上传"
+    },
+    "name": "yellow"
+}

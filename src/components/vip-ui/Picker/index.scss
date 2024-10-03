@@ -1,0 +1,27 @@
+.vip-ui-picker {
+    font-size: 18px;
+    border-radius: 16px 16px 0 0;
+
+    .rmc-picker-item {
+        color: #fff;
+        font-weight: 600;
+        font-size: 14px;
+        font-style: normal;
+        letter-spacing: 0.092px;
+        text-align: center;
+        opacity: 0.5;
+    }
+
+    .rmc-picker-mask {
+        background: none;
+    }
+
+    .rmc-picker-item-selected {
+        opacity: 1;
+    }
+
+    .rmc-picker-indicator {
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+}

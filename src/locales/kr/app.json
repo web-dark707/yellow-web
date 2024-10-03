@@ -1,0 +1,68 @@
+{
+    "ui": {
+        "noMore": "더 이상 내용 없음",
+        "loading": "로딩 중...",
+        "loadError": "로딩 실패, 다시 시도해주세요.",
+        "noData": "데이터 없음",
+        "confirm": "확인",
+        "cancel": "취소",
+        "reload": "새로고침",
+        "noNetwork": "네트워크 사용 불가, 네트워크 설정을 확인해 주세요.",
+        "noAccess": "접근 권한 없음",
+        "toHome": "홈으로 돌아가기",
+        "pageToExist": "페이지를 찾을 수 없음",
+        "uploadMaxSheets": "최대 {{max}}장까지 업로드 가능",
+        "success": "성공",
+        "uploading": "업로드 중..."
+    },
+    "message": {
+        "success": {
+            "login": "로그인 성공",
+            "copy": "복사완료",
+            "remove": "삭제완료",
+            "code": "인증번호 전송 완료",
+            "transfer": "이체완료",
+            "withdrawal": "인출 예약 완료",
+            "outCode": "바인 예약 완료",
+            "password": "비밀번호 변경 완료"
+        },
+        "info": {
+            "permission": "카메라/앨범 권한을 활성화해주세요.",
+            "canNotRecognize": "QR 코드를 인식할 수 없습니다.",
+            "plsUploadScreenshot": "스크린샷을 업로드해주세요"
+        },
+        "error": {
+            "login": "로그인 실패",
+            "copy": "복사실패",
+            "remove": "삭제실패",
+            "code": "인증번호 전송 실패",
+            "outCode": "바인 예약 실패",
+            "transfer": "이체실패",
+            "withdrawal": "인출 예약 실패",
+            "http400": "잘못된 요청",
+            "http401": "사용자에게 권한이 없습니다.",
+            "http403": "사용자 액세스 거부됨",
+            "http404": "리소스를 찾을 수 없음",
+            "http405": "요청 방법이 허용되지 않음",
+            "http408": "시간초과",
+            "http500": "서버오류",
+            "http501": "서비스가 시행되지 않음",
+            "http502": "접속오류",
+            "http503": "서비스 사용 불가",
+            "http504": "접속 시간 초과",
+            "http505": "HTTP 버전이 지원되지 않음",
+            "httpUnknown": "알 수 없는 오류"
+        }
+    },
+    "button": {
+        "confirm": "확인",
+        "next": "다음",
+        "submit": "제출",
+        "remove": "삭제",
+        "refused": "거절",
+        "upload": "업로드",
+        "close": "닫기",
+        "reUpload": "재업로드"
+    },
+    "name": "StarWallet"
+}

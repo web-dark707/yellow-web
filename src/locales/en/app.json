@@ -1,0 +1,68 @@
+{
+    "ui": {
+        "noMore": "No more data.",
+        "loading": "Loading...",
+        "loadError": "Loading failed, please try again.",
+        "noData": "No data.",
+        "confirm": "Confirm",
+        "cancel": "Cancel",
+        "reload": "Reload",
+        "noNetwork": "Network not available, please check your network settings.",
+        "noAccess": "No permission to access.",
+        "toHome": "Back to homepage",
+        "pageToExist": "Page not found.",
+        "uploadMaxSheets": "Upload up to {{max}} pictures",
+        "success": "Success",
+        "uploading": "Uploading..."
+    },
+    "message": {
+        "success": {
+            "login": "Login successful.",
+            "copy": "Copy successful.",
+            "remove": "Remove successful.",
+            "code": "Verification code sent successfully.",
+            "transfer": "Transfer successful.",
+            "withdrawal": "Withdrawal appointment successful.",
+            "outCode": "Game appointment successful.",
+            "password": "Password changed successfully."
+        },
+        "info": {
+            "permission": "Please enable camera/photo album permission.",
+            "canNotRecognize": "Unable to recognize this QR code.",
+            "plsUploadScreenshot": "Please upload screenshots"
+        },
+        "error": {
+            "login": "Login failed.",
+            "copy": "Copy failed.",
+            "remove": "Remove failed.",
+            "code": "Verification code sending failed.",
+            "outCode": "Game appointment failed.",
+            "transfer": "Transfer failed.",
+            "withdrawal": "Withdrawal appointment failed.",
+            "http400": "Invalid request!",
+            "http401": "User does not have permission!",
+            "http403": "User denied access!",
+            "http404": "Resource not found!",
+            "http405": "Request method not allowed!",
+            "http408": "Request timeout!",
+            "http500": "Internal server error!",
+            "http501": "Service not implemented!",
+            "http502": "Gateway error!",
+            "http503": "Service unavailable!",
+            "http504": "Gateway timeout!",
+            "http505": "HTTP version not supported!",
+            "httpUnknown": "Unknown error!"
+        }
+    },
+    "button": {
+        "confirm": "Confirm",
+        "next": "Next",
+        "submit": "Submit",
+        "remove": "Remove",
+        "refused": "Reject",
+        "upload": "Upload",
+        "close": "Close",
+        "reUpload": "Re-upload"
+    },
+    "name": "STAR"
+}
