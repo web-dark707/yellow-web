@@ -1,3 +1,4 @@
+import { VideoListResult } from '@/types/api/home';
 import { deffHttp } from '@/utils/axios';
 
 enum Api {
@@ -6,7 +7,7 @@ enum Api {
 
 // 获取汇率
 export const getVideoList = () => {
-    return deffHttp.post<any[]>({
+    return deffHttp.post<VideoListResult>({
         url: Api.DATING_GIRLS,
     });
 };

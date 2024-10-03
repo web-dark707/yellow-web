@@ -1,14 +1,27 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import classNames from 'classnames';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 import Search from './Search';
 const Header = () => {
     const navigate = useNavigate();
     const [isShowSearch, setIsShowSearch] = useState(false);
     return (
-        <div className="w-full fixed z-999 top-0 text-baseColor">
+        <div
+            className={classNames(
+                'w-full fixed z-999 top-0 text-baseColor',
+                isShowSearch &&
+                    'bg-[rgba(0,0,0,0.8)] h-[100vh] overflow-hidden',
+            )}
+        >
             <div className="w-full h-[60px] flex justify-between items-center px-[24px]">
-                <div onClick={() => navigate('/home')}>LOGO</div>
+                <div
+                    className="text-4xl leading-normal font-extrabold"
+                    onClick={() => navigate('/home')}
+                >
+                    <span className="text-[#FAFAFA]">KK</span>
+                    <span className="text-[#FE618E]">PRON</span>
+                </div>
                 <MagnifyingGlassIcon
                     className="w-[24px] h-[24px]"
                     onClick={() => setIsShowSearch(!isShowSearch)}

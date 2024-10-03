@@ -16,7 +16,7 @@ export interface ResponseData<T = any> {
     /**
      * 消息
      */
-    message: string;
+    msg: string;
 }
 
 //分页类型
@@ -24,18 +24,18 @@ export interface CommonList<T = any> {
     /**
      * 数据
      */
-    list: T[];
+    records: T[];
 
     /**
      * 数量
      */
     total: number;
+    maxPage: number;
 }
 
 export interface PageParams {
-    page?: number;
-    size?: number;
-    status?: number;
+    pageNum?: number;
+    pageNum?: number;
 }
 
 global {

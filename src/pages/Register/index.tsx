@@ -27,7 +27,7 @@ const RegisterPage: FC<RegisterPageProps> = () => {
         const res = await mutateRegister(params);
 
         if (res.code) {
-            Toast.error(res.message);
+            Toast.error(res.msg);
         } else {
             Toast.success('注册成功');
             UserToken.setToken(res.data);

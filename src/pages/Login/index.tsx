@@ -24,7 +24,7 @@ const LoginPage: FC<LoginPageProps> = () => {
         const res = await mutateUserLogin(params);
 
         if (res.code) {
-            Toast.error(res.message);
+            Toast.error(res.msg);
         } else {
             Toast.success(t('app.message.success.login'));
             UserToken.setToken(res.data);

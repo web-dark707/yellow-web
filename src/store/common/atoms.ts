@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
 import { initLang } from '@/locales';
 import { getStorage } from '@/utils/storage';
-import { DictStateType, IframeStateType, LocaleStateType } from './types';
+import { LocaleStateType } from './types';
 
 export const localeState = atom<LocaleStateType>({
     key: 'localeState',
@@ -10,26 +10,7 @@ export const localeState = atom<LocaleStateType>({
     },
 });
 
-/**
- *  配置信息
- */
-export const dictState = atom<DictStateType>({
-    key: 'dictState',
-    default: (getStorage('dict') || {}) as DictStateType,
-});
-
-/**
- *  iframe 显示/隐藏
- */
-export const iframeState = atom<IframeStateType>({
-    key: 'iframeState',
-    default: {
-        isShowIframe: false,
-        url: '',
-    },
-});
-
-export const hasOpenState = atom<any>({
-    key: 'hasOpen',
-    default: (getStorage('hasOpen') || false) as any,
+export const historySearchListState = atom<string[]>({
+    key: 'historySearchListState',
+    default: getStorage('historySearchListState') || [],
 });

@@ -1,4 +1,4 @@
-import { isString } from 'lodash';
+import { cloneDeep, isString } from 'lodash';
 import { t } from 'i18next';
 import { ContentTypeEnum } from '@/enums/httpEnum';
 import log from '@/utils/log';
@@ -22,10 +22,11 @@ const interceptor: AxiosInterceptor = {
          *对请求回来的数据进行处理
          */
         const { data } = res;
+
         if (data) {
-            if (data.code !== 10000) {
+            if (data.code !== 200) {
                 Toast.error({
-                    content: options.errorMessage,
+                    content: data.msg,
                 });
                 if ([10021].includes(data.code)) {
                     UserToken.clearToken();
@@ -33,12 +34,14 @@ const interceptor: AxiosInterceptor = {
                 }
                 return Promise.resolve(errorData(res));
             } else {
-                const { code, data: dataInfo } = data;
-                const toData = {
-                    code,
-                    data: dataInfo,
-                };
-                return Promise.resolve(toData);
+                const temp = cloneDeep(data);
+                delete temp['msg'];
+                delete temp['code'];
+                return Promise.resolve({
+                    msg: data?.msg,
+                    code: data.code,
+                    data: temp,
+                });
             }
         }
         return data;
