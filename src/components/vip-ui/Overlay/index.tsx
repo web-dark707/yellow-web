@@ -60,7 +60,10 @@ const Overlay = forwardRef(
                 <AnimatePresence>
                     {visibleStatus && (
                         <div
-                            className="fixed inset-0 z-999 flex-row-center flex-col overlay-bg"
+                            className={classNames(
+                                'fixed inset-0 z-999 flex flex-col justify-center overlay-bg',
+                                className,
+                            )}
                             ref={domRef}
                             onClick={() => clickExternal && handleCancel()}
                         >
@@ -69,10 +72,7 @@ const Overlay = forwardRef(
                                 animate={motionInit.scale.animate}
                                 exit={motionInit.scale.exit}
                                 transition={{ duration: 0.2 }}
-                                className={classNames(
-                                    'relative w-full',
-                                    className,
-                                )}
+                                className={classNames('relative w-full')}
                                 onClick={(e) => e.stopPropagation()}
                             >
                                 {children}

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import dayjs from 'dayjs';
 import { VideoListItem } from '@/types/api/home';
 
 interface VideoListProps {
@@ -22,7 +21,7 @@ const VideoList = ({ videoList }: VideoListProps) => {
                 >
                     <img className="w-full h-[120px]" src={item.cover} />
                     {/* 时长 */}
-                    <div>{dayjs(item.videoSize).format('HH:mm:ss')}</div>
+                    {/* <div>{dayjs(item.videoSize).format('HH:mm:ss')}</div> */}
                     <div className="truncate">{item.videoName}</div>
                 </div>
             ))}
