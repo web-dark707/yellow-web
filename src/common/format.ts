@@ -129,3 +129,18 @@ export const reverseAmount = ({
         return new Big(value).times(base).toNumber();
     }
 };
+
+export const formatSecondsToTime = (totalSeconds) => {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    // 格式化为两位数的时间
+    const formattedTime = dayjs()
+        .hour(hours)
+        .minute(minutes)
+        .second(seconds)
+        .format('H:m:s');
+
+    return formattedTime;
+};
