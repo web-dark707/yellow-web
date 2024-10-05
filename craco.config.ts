@@ -173,14 +173,9 @@ module.exports = {
             overlay: false, // 关闭错误弹窗
         },
         proxy: {
-            '/api': {
-                target: REACT_APP_API_URL,
-                changeOrigin: true,
-                logLevel: 'debug',
-                headers: {
-                    Cookie: '',
-                },
-            },
+            context: ['/api', '/order'],
+            target: REACT_APP_API_URL,
+            logLevel: 'debug',
         },
     },
 };

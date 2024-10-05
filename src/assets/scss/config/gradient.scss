@@ -11,3 +11,11 @@
     background-color: rgba($color: #000, $alpha: 0.5);
     backdrop-filter: blur(10px);
 }
+
+.button-gradient {
+    background: linear-gradient(270deg, #feecc6, #fec1a1);
+}
+
+.user-card-gradient {
+    background: linear-gradient(180deg, #feecc6, #fec1a1);
+}

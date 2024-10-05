@@ -11,6 +11,8 @@ const Register = lazy(() => import('@/pages/Register'));
 
 const Home = lazy(() => import('@/pages/Home'));
 const Player = lazy(() => import('@/pages/Player'));
+const Pay = lazy(() => import('@/pages/Pay'));
+const User = lazy(() => import('@/pages/User'));
 
 const NotAuthority = lazy(() => import('@/components/ResultPage/NotAuthority'));
 const NotFound = lazy(() => import('@/components/ResultPage/NotFound'));
@@ -37,7 +39,6 @@ const routeList: RouteObject[] = [
             />
         ),
     },
-
     {
         path: '/player',
         element: (
@@ -61,9 +62,16 @@ const routeList: RouteObject[] = [
             />
         ),
     },
-
     {
-        path: '*' || '/404',
+        path: '/pay',
+        element: <WrapperRouteComponent element={<Pay />} title="充值" />,
+    },
+    {
+        path: '/user',
+        element: <WrapperRouteComponent element={<User />} title="个人中心" />,
+    },
+    {
+        path: '*',
         element: (
             <WrapperRouteComponent
                 element={<NotFound />}

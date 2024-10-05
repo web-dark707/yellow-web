@@ -21,7 +21,7 @@ const Button = forwardRef(
             className = '',
             children = null,
             loadingIcon,
-            width = 'w-full',
+            width = '',
             onClick,
             onClickDisabled,
             coverIconWhenLoading = true,
@@ -46,7 +46,7 @@ const Button = forwardRef(
                 style={style}
                 className={classNames(
                     disabled && `${background} opacity-50`,
-                    'flex-row-center text-[14px] text-[#fff] h-[44px] rounded-[2px] font-bold',
+                    'flex-row-center text-[14px] text-[#972d19] rounded-[2px] font-bold py-[8px] px-[12px]',
                     width,
                     background,
                     className,
