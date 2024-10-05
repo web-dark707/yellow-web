@@ -8,6 +8,7 @@ import NavBar from '@/components/NavBar';
 import { localeState } from '@/store/common/atoms';
 import { API_URL } from '@/common/constants';
 import { Loading } from '@/components/vip-ui';
+import TabBar from '@/components/TabBar';
 import PrivateRoute from './privateRoute';
 export type WrapperRouteProps = RouteProps & {
     auth?: boolean; // 是否需要登录
@@ -16,6 +17,7 @@ export type WrapperRouteProps = RouteProps & {
     tabBar?: boolean; // 是否需要底部导航
     pageBg?: string; // 页面背景图
     title?: string; // 页面标题
+    tabBab?: boolean;
 };
 
 const PublicRoute = (props: any) => {
@@ -27,7 +29,7 @@ export const WrapperRouteComponent: FC<WrapperRouteProps> = ({
     auth = true,
     isMotion = true,
     navBar = true,
-    // tabBar = false,
+    tabBar = false,
     pageBg = 'page-bg',
     ...props
 }) => {
@@ -49,6 +51,7 @@ export const WrapperRouteComponent: FC<WrapperRouteProps> = ({
                 className={classNames(
                     'flex flex-col w-full h-full relative text-baseColor text-baseSize break-words',
                     navBar && 'pt-[60px]',
+                    tabBar && 'pb-[50px]',
                     pageBg,
                 )}
             >
@@ -84,7 +87,7 @@ export const WrapperRouteComponent: FC<WrapperRouteProps> = ({
                         )}
                     </Suspense>
                 </div>
-                {/* {tabBar && <TabBar />} */}
+                {tabBar && <TabBar />}
             </main>
         </HelmetProvider>
     );

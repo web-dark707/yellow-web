@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { MagnifyingGlassIcon, TrashIcon } from '@radix-ui/react-icons';
 import { useRecoilValue } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 import { Input, Overlay } from '@/components/vip-ui';
 import { selectorHistorySearchList } from '@/store/common/selectors';
 import { useSetHistorySearchList } from '@/store/common/hooks';
@@ -9,21 +10,29 @@ interface Props {
     onCancel: () => void;
 }
 const Search = ({ onCancel, visible }: Props) => {
+    const navigate = useNavigate();
     const [inputValue, setInputValue] = useState<string>('');
     const historySearchList = useRecoilValue(selectorHistorySearchList);
     const setHistorySearchList = useSetHistorySearchList();
     const handelInput = (e) => {
         setInputValue(e.target.value);
     };
+
+    const onSearch = () => {
+        navigate('/home');
+        onCancel();
+    };
     const handleSearch = () => {
         if (inputValue === '') return;
         // 只留9条
         setHistorySearchList([inputValue, ...historySearchList.slice(0, 9)]);
         setInputValue('');
+        onSearch();
     };
 
     const handleClickHistory = (val: string) => {
-        console.log(val);
+        setInputValue(val);
+        onSearch();
     };
 
     return (

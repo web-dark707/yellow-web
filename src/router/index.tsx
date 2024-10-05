@@ -24,7 +24,12 @@ const routeList: RouteObject[] = [
     {
         path: '/home',
         element: (
-            <WrapperRouteComponent element={<Home />} isMotion={false} navBar />
+            <WrapperRouteComponent
+                element={<Home />}
+                tabBar
+                isMotion={false}
+                navBar
+            />
         ),
     },
     {
@@ -43,6 +48,7 @@ const routeList: RouteObject[] = [
         path: '/player',
         element: (
             <WrapperRouteComponent
+                tabBar
                 element={<Player />}
                 isMotion={false}
                 navBar
@@ -68,7 +74,9 @@ const routeList: RouteObject[] = [
     },
     {
         path: '/user',
-        element: <WrapperRouteComponent element={<User />} title="个人中心" />,
+        element: (
+            <WrapperRouteComponent tabBar element={<User />} title="个人中心" />
+        ),
     },
     {
         path: '*',

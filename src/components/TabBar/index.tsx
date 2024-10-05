@@ -21,27 +21,19 @@ const TabBar: FC<TabBarProps> = () => {
     const tabBarList = useMemo<TabBarItem[]>(
         () => [
             {
-                key: 'record',
-                link: '/record',
-                label: '约会记录',
-                selectedIcon: require('@/assets/images/icon/tab/records1.png'),
-                unselectedIcon: require('@/assets/images/icon/tab/records0.png'),
-                onClick: () => {},
-            },
-            {
                 key: 'home',
                 link: '/home',
-                label: '约会',
-                selectedIcon: require('@/assets/images/icon/tab/dating1.png'),
-                unselectedIcon: require('@/assets/images/icon/tab/dating0.png'),
+                label: '首页',
+                selectedIcon: require('@/assets/images/icon/tab/home1.png'),
+                unselectedIcon: require('@/assets/images/icon/tab/home0.png'),
                 onClick: () => {},
             },
             {
-                key: 'userCenter',
-                link: '/userCenter',
+                key: 'user',
+                link: '/user',
                 label: '我的',
-                selectedIcon: require('@/assets/images/icon/tab/userCenter1.png'),
-                unselectedIcon: require('@/assets/images/icon/tab/userCenter0.png'),
+                selectedIcon: require('@/assets/images/icon/tab/user1.png'),
+                unselectedIcon: require('@/assets/images/icon/tab/user0.png'),
                 onClick: () => {},
             },
         ],
@@ -59,7 +51,7 @@ const TabBar: FC<TabBarProps> = () => {
     }, [location.pathname, tabBarList]);
 
     return (
-        <div className="w-full h-60px pb-4px flex items-end fixed bottom-0 left-0 right-0 z-99 bg-[#C95793]">
+        <div className="w-full h-50px pb-4px flex items-end fixed bottom-0 left-0 right-0 z-99 bg-[#25252C]">
             {tabBarList.map((item, index) => (
                 <div
                     key={item.key}
@@ -67,7 +59,7 @@ const TabBar: FC<TabBarProps> = () => {
                     onClick={() => handleClick(index)}
                 >
                     <img
-                        className="w-28px mb-4px"
+                        className="w-28px"
                         src={
                             acIndex === index
                                 ? item.selectedIcon
@@ -76,9 +68,9 @@ const TabBar: FC<TabBarProps> = () => {
                     />
                     <span
                         className={classNames(
-                            acIndex === index && item.key !== 'games'
+                            acIndex === index
                                 ? 'primary-text-gradient'
-                                : 'text-[#808080] leading-1em',
+                                : 'text-[#808080]',
                         )}
                     >
                         {item.label}
