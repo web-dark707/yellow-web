@@ -16,10 +16,14 @@ const Header = () => {
                     <span className="text-[#FAFAFA]">KK</span>
                     <span className="text-[#FE618E]">PRON</span>
                 </div>
-                <MagnifyingGlassIcon
-                    className="w-[24px] h-[24px]"
-                    onClick={(e) => setIsShowSearch(true)}
-                />
+                <div className="flex">
+                    <MagnifyingGlassIcon
+                        className="w-[24px] h-[24px] mr-[8px]"
+                        onClick={(e) => setIsShowSearch(true)}
+                    />
+
+                    {/* <TextAlignJustifyIcon className="w-[24px] h-[24px]" /> */}
+                </div>
             </div>
             {isShowSearch && (
                 <Search
