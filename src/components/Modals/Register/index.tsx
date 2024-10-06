@@ -3,7 +3,10 @@ import { useRecoilValue } from 'recoil';
 import { useMutation } from '@tanstack/react-query';
 import { Button, Form, Input, Overlay } from '@/components/vip-ui';
 import './index.scss';
-import { useSetLoginState, useSetRegisterState } from '@/store/common/hooks';
+import {
+    useSetLoginModalState,
+    useSetRegisterState,
+} from '@/store/common/hooks';
 import { selectorRegisterState } from '@/store/common/selectors';
 import { getCaptchaImage, register } from '@/api/login';
 import { getQueryString } from '@/utils/tools';
@@ -15,7 +18,7 @@ type RegisterModalProps = {};
 const RegisterModal: FC<RegisterModalProps> = () => {
     const [form] = useForm();
     const setIsShowRegisterModal = useSetRegisterState();
-    const setIsShowLoginModal = useSetLoginState();
+    const setIsShowLoginModal = useSetLoginModalState();
     const [loginDisabled, setLoginDisabled] = useState(true);
     const invitationCode = getQueryString('code'); // 邀请码
     const { mutateAsync: mutateRegister, isLoading } = useMutation(register);

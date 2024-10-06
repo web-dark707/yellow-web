@@ -4,7 +4,7 @@ import {
     forgotPasswordState,
     historySearchListState,
     iframeState,
-    loginState,
+    loginModalState,
     registerState,
 } from './atoms';
 import { IframeStateType } from './types';
@@ -26,8 +26,8 @@ export const useSetIframe = () => {
         }));
     };
 };
-export const useSetLoginState = () => {
-    const setValue = useSetRecoilState(loginState);
+export const useSetLoginModalState = () => {
+    const setValue = useSetRecoilState(loginModalState);
     return (state: Optional<boolean>) => {
         setValue(state);
     };

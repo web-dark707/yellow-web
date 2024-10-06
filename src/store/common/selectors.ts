@@ -3,7 +3,7 @@ import {
     forgotPasswordState,
     historySearchListState,
     iframeState,
-    loginState,
+    loginModalState,
     registerState,
 } from './atoms';
 
@@ -18,9 +18,9 @@ export const selectorIframe = selector({
     get: ({ get }) => get(iframeState),
 });
 
-export const selectorLoginState = selector({
-    key: 'selectorLoginState',
-    get: ({ get }) => get(loginState),
+export const selectorLoginModalState = selector({
+    key: 'selectorLoginModalState',
+    get: ({ get }) => get(loginModalState),
 });
 
 export const selectorRegisterState = selector({

@@ -50,6 +50,10 @@ export interface VideoDetailsResult {
 }
 
 export interface UserResult {
+    record: UserDetail;
+}
+
+export interface UserDetail {
     posName: string;
     depName: string;
     isVip: number;

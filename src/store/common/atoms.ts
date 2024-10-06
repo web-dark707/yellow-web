@@ -28,8 +28,8 @@ export const iframeState = atom<IframeStateType>({
 /**
  * 登录弹窗 显示/隐藏
  */
-export const loginState = atom<boolean>({
-    key: 'loginState',
+export const loginModalState = atom<boolean>({
+    key: 'loginModalState',
     default: false,
 });
 /**

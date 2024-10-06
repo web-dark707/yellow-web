@@ -4,20 +4,26 @@ import { useMutation } from '@tanstack/react-query';
 import { Button, Input, Overlay } from '@/components/vip-ui';
 import './index.scss';
 import Checkbox from '@/components/Checkbox';
-import { selectorLoginState } from '@/store/common/selectors';
-import { useSetLoginState, useSetRegisterState } from '@/store/common/hooks';
+import { selectorLoginModalState } from '@/store/common/selectors';
+import {
+    useSetLoginModalState,
+    useSetRegisterState,
+} from '@/store/common/hooks';
 import Form, { useForm } from '@/components/vip-ui/Form';
 import { isNumberLetter } from '@/utils/validate';
 import { getCaptchaImage, login } from '@/api/login';
 import { LoginParams } from '@/types/api/login';
+import { useSetTokenInfoState } from '@/store/user/hooks';
 type LoginModalProps = {};
 
 const LoginModal: FC<LoginModalProps> = () => {
     const [form] = useForm();
+    const setTokenInfo = useSetTokenInfoState();
+    const setIsShowLoginModal = useSetLoginModalState();
     const setIsShowRegisterModal = useSetRegisterState();
-    const setIsShowLoginModal = useSetLoginState();
+
     const [loginDisabled, setLoginDisabled] = useState(true);
-    const isShowLoginModal = useRecoilValue(selectorLoginState);
+    const isShowLoginModal = useRecoilValue(selectorLoginModalState);
     const [checkState, setCheckState] = useState(false);
     const { mutateAsync: mutateLogin, isLoading } = useMutation(login);
     const { mutateAsync: mutateGetCaptchaImage, data } =
@@ -34,6 +40,9 @@ const LoginModal: FC<LoginModalProps> = () => {
         };
         const res = await mutateLogin(params);
         if (res.code === 200) {
+            if (res.data.tokenInfo) {
+                setTokenInfo(res.data.tokenInfo);
+            }
             setIsShowLoginModal(false);
         }
     };

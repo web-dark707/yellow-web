@@ -12,6 +12,10 @@ export interface RegisterParams {
 }
 
 export interface LoginResult {
+    tokenInfo: TokenInfo;
+}
+
+export interface TokenInfo {
     isLogin: boolean;
     loginDevice: string;
     loginId: string;
