@@ -25,3 +25,24 @@ export const iframeState = atom<IframeStateType>({
         url: '',
     },
 });
+/**
+ * 登录弹窗 显示/隐藏
+ */
+export const loginState = atom<boolean>({
+    key: 'loginState',
+    default: false,
+});
+/**
+ * 注册弹窗 显示/隐藏
+ */
+export const registerState = atom<boolean>({
+    key: 'registerState',
+    default: false,
+});
+/**
+ * 忘记密码弹窗 显示/隐藏
+ */
+export const forgotPasswordState = atom<boolean>({
+    key: 'forgotPasswordState',
+    default: false,
+});

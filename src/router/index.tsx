@@ -24,21 +24,26 @@ const routeList: RouteObject[] = [
     {
         path: '/home',
         element: (
-            <WrapperRouteComponent element={<Home />} isMotion={false} navBar />
-        ),
-    },
-    {
-        path: '/register',
-        element: (
             <WrapperRouteComponent
-                element={<Register />}
-                auth={false}
-                navBar={false}
+                element={<Home />}
                 isMotion={false}
-                title="注册"
+                navBar
+                tabBar
             />
         ),
     },
+    // {
+    //     path: '/register',
+    //     element: (
+    //         <WrapperRouteComponent
+    //             element={<Register />}
+    //             auth={false}
+    //             navBar={false}
+    //             isMotion={false}
+    //             title="注册"
+    //         />
+    //     ),
+    // },
     {
         path: '/player',
         element: (
@@ -49,19 +54,18 @@ const routeList: RouteObject[] = [
             />
         ),
     },
-
-    {
-        path: '/login',
-        element: (
-            <WrapperRouteComponent
-                element={<Login />}
-                auth={false}
-                navBar={false}
-                isMotion={false}
-                title="登入"
-            />
-        ),
-    },
+    // {
+    //     path: '/login',
+    //     element: (
+    //         <WrapperRouteComponent
+    //             element={<Login />}
+    //             auth={false}
+    //             navBar={false}
+    //             isMotion={false}
+    //             title="登入"
+    //         />
+    //     ),
+    // },
     {
         path: '/pay',
         element: <WrapperRouteComponent element={<Pay />} title="充值" />,

@@ -1,6 +1,12 @@
 import { useSetRecoilState } from 'recoil';
 import { setStorage } from '@/utils/storage';
-import { historySearchListState, iframeState } from './atoms';
+import {
+    forgotPasswordState,
+    historySearchListState,
+    iframeState,
+    loginState,
+    registerState,
+} from './atoms';
 import { IframeStateType } from './types';
 
 export const useSetHistorySearchList = () => {
@@ -18,5 +24,24 @@ export const useSetIframe = () => {
             ...prev,
             ...state,
         }));
+    };
+};
+export const useSetLoginState = () => {
+    const setValue = useSetRecoilState(loginState);
+    return (state: Optional<boolean>) => {
+        setValue(state);
+    };
+};
+export const useSetRegisterState = () => {
+    const setValue = useSetRecoilState(registerState);
+    return (state: Optional<boolean>) => {
+        setValue(state);
+    };
+};
+
+export const useSetForgotPasswordState = () => {
+    const setValue = useSetRecoilState(forgotPasswordState);
+    return (state: Optional<boolean>) => {
+        setValue(state);
     };
 };

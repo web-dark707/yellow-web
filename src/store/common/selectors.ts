@@ -1,5 +1,11 @@
 import { selector } from 'recoil';
-import { historySearchListState, iframeState } from './atoms';
+import {
+    forgotPasswordState,
+    historySearchListState,
+    iframeState,
+    loginState,
+    registerState,
+} from './atoms';
 
 export const selectorHistorySearchList = selector({
     key: 'selectorHistorySearchList',
@@ -10,4 +16,19 @@ export const selectorHistorySearchList = selector({
 export const selectorIframe = selector({
     key: 'selectorIframe',
     get: ({ get }) => get(iframeState),
+});
+
+export const selectorLoginState = selector({
+    key: 'selectorLoginState',
+    get: ({ get }) => get(loginState),
+});
+
+export const selectorRegisterState = selector({
+    key: 'selectorRegisterState',
+    get: ({ get }) => get(registerState),
+});
+
+export const selectorForgotPasswordState = selector({
+    key: 'selectorForgotPasswordState',
+    get: ({ get }) => get(forgotPasswordState),
 });

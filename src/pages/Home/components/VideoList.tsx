@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { CaretDownIcon } from '@radix-ui/react-icons';
 import { VideoListItem } from '@/types/api/home';
-import Skeleton from '@/components/vip-ui/Skeleton';
-// import VideoPlayerItem from './VideoPlayerItem';
+import VideoPlayerItem from './VideoPlayerItem';
 
 interface VideoListProps {
     videoList: VideoListItem[];
@@ -24,10 +22,10 @@ const VideoList = ({ videoList }: VideoListProps) => {
                 title
             </div>
             <div className="flex justify-between flex-wrap mx-[12px]">
-                {/* {videoList.map((item) => (
-                <VideoPlayerItem key={item.id} videoItem={item} />
-            ))} */}
-                <Skeleton className="w-[168px] h-[100px] mb-[12px]" />
+                {videoList.map((item) => (
+                    <VideoPlayerItem key={item.id} videoItem={item} />
+                ))}
+                {/* <Skeleton className="w-[168px] h-[100px] mb-[12px]" />
                 <Skeleton className="w-[168px] h-[100px] mb-[12px]" />
                 <Skeleton className="w-[168px] h-[100px] mb-[12px]" />
                 <Skeleton className="w-[168px] h-[100px] mb-[12px]" />
@@ -40,7 +38,7 @@ const VideoList = ({ videoList }: VideoListProps) => {
                     <CaretDownIcon className="w-[18px] h-[18px]" />
                 </div>
 
-                <div className="w-full flex justify-center">到底啦～</div>
+                <div className="w-full flex justify-center">到底啦～</div> */}
             </div>
         </div>
     );

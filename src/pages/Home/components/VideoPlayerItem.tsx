@@ -3,7 +3,7 @@ import Player from 'xgplayer';
 import { useNavigate } from 'react-router-dom';
 import { VideoListItem } from '@/types/api/home';
 import 'xgplayer/dist/index.min.css';
-import { formatSecondsToTime } from '@/common/format';
+import { API_URL } from '@/common/constants';
 
 interface Props {
     videoItem: VideoListItem;
@@ -12,7 +12,7 @@ const VideoPlayerItem = ({ videoItem }: Props) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate('/player');
+        navigate(`/player?id=${videoItem.id}`);
     };
     useEffect(() => {
         const player = new Player({
@@ -23,10 +23,8 @@ const VideoPlayerItem = ({ videoItem }: Props) => {
             autoplay: false,
             autoplayMuted: false,
             volume: 0,
-            // poster: videoItem.cover, //封面图
-            // url: videoItem.videoUrl,
-            poster: 'https://w.wallhaven.cc/full/2y/wallhaven-2yq73m.jpg', //封面图
-            url: '//lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/byted-player-videos/1.0.0/xgplayer-demo.mp4',
+            poster: API_URL + videoItem.snapshot, //封面图
+            url: API_URL + videoItem.clipUrl,
         });
         // 点击播放事件
         player.on('play', () => {
@@ -45,9 +43,9 @@ const VideoPlayerItem = ({ videoItem }: Props) => {
             </div>
             {/* 时长 */}
             <div className="absolute bottom-[24px] right-1 rounded-lg px-2 py-1 text-xs text-nord5 bg-gray-800 bg-opacity-75">
-                {formatSecondsToTime(videoItem.videoSize)}
+                {videoItem.duration}
             </div>
-            <div className="truncate">{videoItem.videoName}</div>
+            <div className="truncate">{videoItem.name}</div>
         </div>
     );
 };
