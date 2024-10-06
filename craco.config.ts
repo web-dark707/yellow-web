@@ -173,7 +173,7 @@ module.exports = {
             overlay: false, // 关闭错误弹窗
         },
         proxy: {
-            context: ['/api', '/order'],
+            context: ['/api', '/order', '/captcha'],
             target: REACT_APP_API_URL,
             logLevel: 'debug',
         },

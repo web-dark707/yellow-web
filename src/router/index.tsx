@@ -6,8 +6,6 @@ import { WrapperRouteComponent } from './config';
 import Redirect from './Redirect';
 
 NProgress.configure({ showSpinner: false });
-const Login = lazy(() => import('@/pages/Login'));
-const Register = lazy(() => import('@/pages/Register'));
 
 const Home = lazy(() => import('@/pages/Home'));
 const Player = lazy(() => import('@/pages/Player'));
@@ -43,18 +41,6 @@ const routeList: RouteObject[] = [
             />
         ),
     },
-    // {
-    //     path: '/register',
-    //     element: (
-    //         <WrapperRouteComponent
-    //             element={<Register />}
-    //             auth={false}
-    //             navBar={false}
-    //             isMotion={false}
-    //             title="注册"
-    //         />
-    //     ),
-    // },
     {
         path: '/player',
         element: (
@@ -66,18 +52,6 @@ const routeList: RouteObject[] = [
             />
         ),
     },
-    // {
-    //     path: '/login',
-    //     element: (
-    //         <WrapperRouteComponent
-    //             element={<Login />}
-    //             auth={false}
-    //             navBar={false}
-    //             isMotion={false}
-    //             title="登入"
-    //         />
-    //     ),
-    // },
     {
         path: '/pay',
         element: <WrapperRouteComponent element={<Pay />} title="充值" />,

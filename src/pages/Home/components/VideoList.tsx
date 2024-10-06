@@ -19,7 +19,7 @@ const VideoList = ({ videoList }: VideoListProps) => {
     return (
         <div>
             <div className="text-[20px] font-semibold px-[12px] mb-[16px]">
-                title
+                热门视频
             </div>
             <div className="flex justify-between flex-wrap mx-[12px]">
                 {videoList.map((item) => (

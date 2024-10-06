@@ -75,7 +75,16 @@ const interceptor: AxiosInterceptor = {
                 (config as Recordable).headers['t'] =
                     requestOptions?.specialToken;
         }
-        config.headers['L'] = localStorage.getItem('i18nextLng');
+
+        if (config?.headers?.['Content-Type'] === ContentTypeEnum.FORM_DATA) {
+            const formData = new FormData();
+            if (config?.data) {
+                Object.keys(config.data).map((key) => {
+                    formData.append(key, config.data[key]);
+                });
+            }
+            config.data = formData;
+        }
         return config;
     },
 
@@ -91,6 +100,18 @@ const interceptor: AxiosInterceptor = {
      * @description: 响应拦截器处理
      */
     responseInterceptors: (res) => {
+        if (res.config?.responseType === 'arraybuffer') {
+            try {
+                const url = window.URL.createObjectURL(
+                    new Blob([res.data], { type: 'image/png' }),
+                );
+                return Object.assign(res, {
+                    data: { url, code: 200 },
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        }
         return res;
     },
 
@@ -119,7 +140,7 @@ function createAxios(options?: Partial<CreateAxiosOptions>) {
             timeout: 15 * 1000,
             // (拦截器)数据处理方式
             interceptor,
-            headers: { 'Content-Type': ContentTypeEnum.JSON },
+            headers: { 'Content-Type': ContentTypeEnum.FORM_DATA },
             // 配置项（需要在拦截器中做的处理），下面的选项都可以在独立的接口请求中覆盖
             requestOptions: {
                 withToken: true,

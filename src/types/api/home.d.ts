@@ -22,7 +22,7 @@ export interface VideoListItem {
 
 export type VideoListResult = CommonList<VideoListItem>;
 
-export interface VideoDetailsResult {
+export interface VideoDetailsItem {
     anchorId: string;
     chargeType: number;
     clipUrl: string;
@@ -43,4 +43,23 @@ export interface VideoDetailsResult {
     createUserId: string;
     updateUserId: string;
     url: string;
+}
+
+export interface VideoDetailsResult {
+    record: VideoDetailsItem;
+}
+
+export interface UserResult {
+    posName: string;
+    depName: string;
+    isVip: number;
+    posId: string;
+    password: string;
+    balance: number;
+    nickname: string;
+    depId: number;
+    id: string;
+    invitationCode: string;
+    invitationCodeBy: string;
+    username: string;
 }

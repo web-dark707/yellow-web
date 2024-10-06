@@ -207,8 +207,7 @@ export function useInputLogic(
     // 处理input border,字体,背景
     const InputStyle = () => {
         const style = {
-            'border-primaryColor border border-solid text-baseColor':
-                isFocusing,
+            'border-primaryColor text-baseColor': isFocusing,
             'text-baseColor opacity-70': !isFocusing && !inputValue,
         };
 
