@@ -9,3 +9,9 @@ export const configState = atom<ConfigType>({
         initPageStatus: true,
     }) as ConfigType,
 });
+
+// 用户信息
+export const searchState = atom<string>({
+    key: 'searchState',
+    default: '',
+});

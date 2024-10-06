@@ -35,7 +35,7 @@ export interface CommonList<T = any> {
 
 export interface PageParams {
     pageNum?: number;
-    pageNum?: number;
+    pageSize?: number;
 }
 
 global {

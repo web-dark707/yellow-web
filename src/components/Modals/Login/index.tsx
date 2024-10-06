@@ -14,6 +14,7 @@ import { isNumberLetter } from '@/utils/validate';
 import { getCaptchaImage, login } from '@/api/login';
 import { LoginParams } from '@/types/api/login';
 import { useSetTokenInfoState } from '@/store/user/hooks';
+import { getStorage, setStorage } from '@/utils/storage';
 type LoginModalProps = {};
 
 const LoginModal: FC<LoginModalProps> = () => {
@@ -42,8 +43,11 @@ const LoginModal: FC<LoginModalProps> = () => {
         if (res.code === 200) {
             if (res.data.tokenInfo) {
                 setTokenInfo(res.data.tokenInfo);
+                if (checkState) setStorage('username', values.username);
             }
             setIsShowLoginModal(false);
+        } else {
+            resetCaptchaImage();
         }
     };
 
@@ -84,6 +88,7 @@ const LoginModal: FC<LoginModalProps> = () => {
                     <Form.Item
                         field="username"
                         className="w-full"
+                        initialValue={getStorage('username')}
                         rules={[
                             {
                                 required: true,

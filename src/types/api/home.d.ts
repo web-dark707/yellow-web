@@ -1,4 +1,4 @@
-import { CommonList } from '../common/global';
+import { CommonList, PageParams } from '../common/global';
 
 export interface VideoListItem {
     anchorId: string;
@@ -66,4 +66,11 @@ export interface UserDetail {
     invitationCode: string;
     invitationCodeBy: string;
     username: string;
+}
+
+export interface VideoParams extends PageParams {
+    orderByColumn?: string;
+    orderType?: string;
+    type?: number;
+    name?: string;
 }

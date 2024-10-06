@@ -10,7 +10,11 @@ const User = () => {
     const setIsShowLoginModal = useSetLoginModalState();
     const userDetailState = useRecoilValue(selectorUserDetailState);
     const handlePay = () => {
-        navigate('/pay');
+        if (userDetailState) {
+            navigate('/pay');
+        } else {
+            setIsShowLoginModal(true);
+        }
     };
     const handleLogin = () => {
         setIsShowLoginModal(true);
@@ -22,21 +26,24 @@ const User = () => {
                     <div className="flex flex-col">
                         {userDetailState ? (
                             <>
-                                <div className="flex items-center">
-                                    <span className="text-[18px] font-bold">
+                                <div className="flex items-end">
+                                    <span className="text-[20px] font-bold">
                                         {userDetailState.username}
                                     </span>
-                                    {
-                                        <img
-                                            className="w-[20px] h-[20px]"
-                                            src={require('@/assets/images/user/vip.webp')}
-                                            alt=""
-                                        />
-                                    }
+                                    <img
+                                        className="w-[18px] h-[18px] ml-[4px]"
+                                        src={
+                                            userDetailState.isVip
+                                                ? require('@/assets/images/user/vip.webp')
+                                                : require('@/assets/images/user/un_vip.webp')
+                                        }
+                                    />
                                 </div>
-                                <div className="text-[#969699] mt-[4px]">
-                                    您还没有开通vip
-                                </div>
+                                {!userDetailState.isVip && (
+                                    <div className="text-[#969699] mt-[6px]">
+                                        您还没有开通vip
+                                    </div>
+                                )}
                             </>
                         ) : (
                             <div onClick={handleLogin} className="text-[16px]">

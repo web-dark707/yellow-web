@@ -2,6 +2,7 @@ import {
     UserResult,
     VideoDetailsResult,
     VideoListResult,
+    VideoParams,
 } from '@/types/api/home';
 import { deffHttp } from '@/utils/axios';
 
@@ -12,9 +13,10 @@ enum Api {
 }
 
 // 获取视频列表
-export const getVideoList = () => {
+export const getVideoList = (params: VideoParams) => {
     return deffHttp.post<VideoListResult>({
         url: Api.API_VIDEO_LIST,
+        data: params,
     });
 };
 

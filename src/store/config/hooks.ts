@@ -1,6 +1,6 @@
 import { useSetRecoilState } from 'recoil';
 import { setStorage } from '@/utils/storage';
-import { configState } from './atoms';
+import { configState, searchState } from './atoms';
 import { ConfigType } from './types';
 
 export const useSetConfig = () => {
@@ -14,5 +14,13 @@ export const useSetConfig = () => {
             setStorage('config', updatedConfig);
             return updatedConfig;
         });
+    };
+};
+
+export const useSetSearchStateState = () => {
+    const setValue = useSetRecoilState(searchState);
+    return (state: string) => {
+        setValue(state);
+        return state;
     };
 };

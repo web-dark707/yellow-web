@@ -40,6 +40,8 @@ const RegisterModal: FC<RegisterModalProps> = () => {
         const res = await mutateRegister(params);
         if (res.code === 200) {
             handleLogin();
+        } else {
+            resetCaptchaImage();
         }
     };
     const resetCaptchaImage = useCallback(() => {

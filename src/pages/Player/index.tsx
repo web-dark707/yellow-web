@@ -20,7 +20,7 @@ const Player = () => {
     }, [id, mutateGetVideoDetails, navigate]);
 
     return (
-        <div className="w-full h-full pt-[38px]">
+        <div className="w-full h-full pt-[12px]">
             <VideoPlayer details={data?.data.record} />
             <div className="px-[16px] pt-[24px]">
                 <div className="text-[18px] font-bold">
