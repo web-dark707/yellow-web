@@ -62,17 +62,10 @@ const LoginModal: FC<LoginModalProps> = () => {
         <Overlay
             visible={isShowLoginModal}
             onCancel={() => setIsShowLoginModal(false)}
-            closeIcon={<></>}
         >
             <div className="login-container">
                 <div>
                     <h2 className="title">登入你的帐户</h2>
-                    <p className="register">
-                        或
-                        <span onClick={handleRegister} className="font-medium ">
-                            注册一个新帐户
-                        </span>
-                    </p>
                 </div>
                 <Form
                     form={form}
@@ -104,7 +97,7 @@ const LoginModal: FC<LoginModalProps> = () => {
                         <Input
                             placeholder="账号"
                             validator={isNumberLetter}
-                            inputClass="placeholder-[#7E94AF]"
+                            inputClass="placeholder-[#666666]"
                             className="h-[48px] text-[#222] border-b-1 border-solid border-[#c2c2c2] bg-[#fff]"
                         />
                     </Form.Item>
@@ -130,7 +123,7 @@ const LoginModal: FC<LoginModalProps> = () => {
                         <Input
                             type="password"
                             placeholder="密码"
-                            inputClass="placeholder-[#7E94AF]"
+                            inputClass="placeholder-[#666666]"
                             className="h-[48px] text-[#222] border-b-1 border-solid border-[#c2c2c2] bg-[#fff]"
                         />
                     </Form.Item>
@@ -149,7 +142,7 @@ const LoginModal: FC<LoginModalProps> = () => {
                             <Input
                                 validator={isNumberLetter}
                                 placeholder="验证码"
-                                inputClass="placeholder-[#7E94AF]"
+                                inputClass="placeholder-[#666666]"
                                 className="h-[48px] text-[#222] bg-[#fff]"
                             />
                         </Form.Item>
@@ -172,13 +165,16 @@ const LoginModal: FC<LoginModalProps> = () => {
                     登入
                 </Button>
 
-                <div className="other">
+                <div className="other flex justify-between">
                     <Checkbox
                         value={1}
                         checked={checkState}
                         label={'记住我'}
                         onChange={() => setCheckState(!checkState)}
                     />
+                    <p className="register" onClick={handleRegister}>
+                        注册一个新帐户
+                    </p>
                     {/* <a href="#" onClick={() => {}}>
                         忘记密码?
                     </a> */}

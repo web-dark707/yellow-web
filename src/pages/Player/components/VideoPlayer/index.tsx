@@ -3,7 +3,7 @@ import Player from 'xgplayer';
 import { VideoDetailsItem } from '@/types/api/home';
 import 'xgplayer/dist/index.min.css';
 import { API_URL } from '@/common/constants';
-// import './index.scss';
+import './index.scss';
 interface Props {
     details: VideoDetailsItem;
 }
@@ -30,7 +30,7 @@ const VideoPlayer = ({ details }: Props) => {
     }, [details]);
 
     return (
-        <div className=" w-full">
+        <div className="play-container w-full">
             <div id="player"></div>
         </div>
     );

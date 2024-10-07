@@ -6,7 +6,6 @@ import { Input, Overlay } from '@/components/vip-ui';
 import { selectorHistorySearchList } from '@/store/common/selectors';
 import { useSetHistorySearchList } from '@/store/common/hooks';
 import { useSetSearchStateState } from '@/store/config/hooks';
-import { useUpdateEffect } from '@/hooks';
 interface Props {
     visible: boolean;
     onCancel: () => void;
@@ -22,8 +21,8 @@ const Search = ({ onCancel, visible }: Props) => {
         setInputValue(e.target.value);
     };
 
-    const onSearch = () => {
-        setSearchStateState(inputValue);
+    const onSearch = (val) => {
+        setSearchStateState(val);
         navigate('/home');
         onCancel();
         setInputValue('');
@@ -33,15 +32,17 @@ const Search = ({ onCancel, visible }: Props) => {
         if (inputValue === '') return;
         // 只留9条
         setHistorySearchList([inputValue, ...historySearchList.slice(0, 9)]);
+        onSearch(inputValue);
     };
 
     const handleClickHistory = (val: string) => {
         setInputValue(val);
+        onSearch(val);
     };
 
-    useUpdateEffect(() => {
-        onSearch();
-    }, [inputValue]);
+    // useUpdateEffect(() => {
+    //     onSearch();
+    // }, [inputValue]);
 
     return (
         <Overlay

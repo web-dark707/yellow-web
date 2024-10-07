@@ -12,8 +12,7 @@ const {
     REACT_APP_API_URL,
     NODE_ENV,
     REACT_APP_VIEWPORTWIDTH,
-    REACT_APP_OFFICIAL_API_URL,
-    REACT_APP_WS_URL,
+    REACT_APP_ENV = 'dev',
 } = process.env;
 
 module.exports = {
@@ -81,10 +80,10 @@ module.exports = {
         },
         configure: (webpackConfig: any, { env, paths }: any) => {
             // 修改build的生成文件名称
-            paths.appBuild = 'dist';
+            paths.appBuild = REACT_APP_ENV;
             webpackConfig.output = {
                 ...webpackConfig.output,
-                path: resolve('dist'),
+                path: resolve(REACT_APP_ENV),
                 publicPath: '/',
                 pathinfo: false,
             };

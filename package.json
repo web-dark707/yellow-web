@@ -57,7 +57,8 @@
     },
     "scripts": {
         "start": "dotenv -e .env.development craco start",
-        "build": "dotenv -e .env.production  craco build",
+        "build:pro": "dotenv -e .env.production  craco build",
+        "build:dev": "dotenv -e .env.development  craco build",
         "prettier": "prettier --config .prettierrc.cjs --write --list-different \"src/**/*.{js,jsx,ts,tsx,css,scss,less,json,md}\" ",
         "eslint": "eslint --config .eslintrc.cjs --fix --ext .js,.jsx,.ts,.tsx,.json \"src/**/*.{js,ts,tsx,jsx,json}\" ",
         "stylelint": "stylelint --config .stylelintrc.cjs \"src/**/*.{css,less,scss}\" --fix",

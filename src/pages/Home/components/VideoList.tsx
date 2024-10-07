@@ -9,13 +9,12 @@ import Skeleton from '@/components/vip-ui/Skeleton';
 import { Empty } from '@/components/vip-ui';
 import { useUpdateEffect } from '@/hooks';
 import { VideoListItem } from '@/types/api/home';
+import { useSetSearchStateState } from '@/store/config/hooks';
 import VideoPlayerItem from './VideoPlayerItem';
 
-interface VideoListProps {
-    videoList: VideoListItem[];
-}
 const VideoList = () => {
     const [videoList, setVideoList] = useState<VideoListItem[]>([]);
+    const setSearchStateState = useSetSearchStateState();
     const searchState = useRecoilValue(selectorSearchState);
     const [pageInfo, setPageInfo] = useState<PageParams>({
         pageNum: 1,
@@ -27,7 +26,6 @@ const VideoList = () => {
         isLoading,
     } = useMutation(getVideoList, {
         onSuccess(res) {
-            console.log(res);
             setVideoList((prev) => [...prev, ...res.data.records]);
         },
     });
@@ -49,6 +47,11 @@ const VideoList = () => {
     const reset = () => {
         setPageInfo({ pageNum: 1, pageSize: 10 });
         setVideoList([]);
+    };
+
+    const resetList = () => {
+        setSearchStateState('');
+        reset();
     };
 
     // 查询名字时重置数据
@@ -83,7 +86,12 @@ const VideoList = () => {
                       ))}
                 {/* 无数据 */}
                 {videoList.length === 0 && !isLoading ? (
-                    <Empty className="mx-auto" />
+                    <Empty
+                        className="mx-auto"
+                        description={
+                            <div onClick={resetList}>点击重新加载</div>
+                        }
+                    />
                 ) : (
                     <>
                         {data?.data?.total === videoList.length ? (

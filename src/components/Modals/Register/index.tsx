@@ -55,17 +55,10 @@ const RegisterModal: FC<RegisterModalProps> = () => {
         <Overlay
             visible={isShowRegisterModal}
             onCancel={() => setIsShowRegisterModal(false)}
-            closeIcon={<></>}
         >
             <div className="register-container">
                 <div>
                     <h2 className="title">注册一个新帐户</h2>
-                    <p className="register">
-                        或
-                        <span onClick={handleLogin} className="font-medium">
-                            登入你的帐户
-                        </span>
-                    </p>
                 </div>
                 <Form
                     form={form}
@@ -96,7 +89,7 @@ const RegisterModal: FC<RegisterModalProps> = () => {
                         <Input
                             placeholder="账号"
                             validator={isNumberLetter}
-                            inputClass="placeholder-[#7E94AF]"
+                            inputClass="placeholder-[#666666]"
                             className="h-[48px] text-[#222] border-b-1 border-solid border-[#c2c2c2] bg-[#fff]"
                         />
                     </Form.Item>
@@ -122,7 +115,7 @@ const RegisterModal: FC<RegisterModalProps> = () => {
                         <Input
                             type="password"
                             placeholder="密码"
-                            inputClass="placeholder-[#7E94AF]"
+                            inputClass="placeholder-[#666666]"
                             className="h-[48px] text-[#222] border-b-1 border-solid border-[#c2c2c2] bg-[#fff]"
                         />
                     </Form.Item>
@@ -152,7 +145,7 @@ const RegisterModal: FC<RegisterModalProps> = () => {
                         <Input
                             type="password"
                             placeholder="确认密码"
-                            inputClass="placeholder-[#7E94AF]"
+                            inputClass="placeholder-[#666666]"
                             className="h-[48px] text-[#222] border-b-1 border-solid border-[#c2c2c2] bg-[#fff]"
                         />
                     </Form.Item>
@@ -171,7 +164,7 @@ const RegisterModal: FC<RegisterModalProps> = () => {
                             <Input
                                 validator={isNumberLetter}
                                 placeholder="验证码"
-                                inputClass="placeholder-[#7E94AF]"
+                                inputClass="placeholder-[#666666]"
                                 className="h-[48px] text-[#222] bg-[#fff]"
                             />
                         </Form.Item>
@@ -193,6 +186,9 @@ const RegisterModal: FC<RegisterModalProps> = () => {
                 >
                     注册
                 </Button>
+                <p className="register" onClick={handleLogin}>
+                    登入你的帐户
+                </p>
             </div>
         </Overlay>
     );
