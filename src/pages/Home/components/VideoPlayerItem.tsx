@@ -37,7 +37,7 @@ const VideoPlayerItem = ({ videoItem }: Props) => {
     }, [videoItem]);
 
     return (
-        <div className=" mb-[12px] relative" onClick={handleClick}>
+        <div className="w-[168px] mb-[12px] relative" onClick={handleClick}>
             <div className="w-[168px] h-[120px]">
                 <div className="" id={videoItem.id}></div>
             </div>
@@ -45,7 +45,7 @@ const VideoPlayerItem = ({ videoItem }: Props) => {
             <div className="absolute bottom-[24px] right-1 rounded-lg px-2 py-1 text-xs text-nord5 bg-gray-800 bg-opacity-75">
                 {videoItem.duration}
             </div>
-            <div className="truncate">{videoItem.name}</div>
+            <div className="w-full truncate">{videoItem.name}</div>
         </div>
     );
 };

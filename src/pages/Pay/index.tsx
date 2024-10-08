@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import { useRecoilValue } from 'recoil';
 import { useMutation } from '@tanstack/react-query';
 import { Button } from '@/components/vip-ui';
 import { payTypeList } from '@/common/options/record';
 import { getPay } from '@/api/pay';
 import { useSetIframe } from '@/store/common/hooks';
+import { selectorUserDetailState } from '@/store/user/selectors';
 
 const Pay = () => {
     const setIframe = useSetIframe();
-
+    const userDetailState = useRecoilValue(selectorUserDetailState);
     const [bankCode, setBankCode] = useState<string>('ZFB');
     const [payType, setPayType] = useState(1);
     const { mutateAsync: mutateGetPay } = useMutation(getPay);
@@ -50,8 +52,24 @@ const Pay = () => {
         <div className="w-full h-full flex flex-col justify-between">
             <div>
                 <div className="px-[16px]">
-                    <div className="text-[#fff] text-[18px]">name</div>
-                    <div className="text-[#6f6f71]">暂无开通会员</div>
+                    <div className="flex items-end">
+                        <span className="text-[20px] font-bold">
+                            {userDetailState?.username}
+                        </span>
+                        <img
+                            className="w-[18px] h-[18px] ml-[4px]"
+                            src={
+                                userDetailState?.isVip === 1
+                                    ? require('@/assets/images/user/vip.webp')
+                                    : require('@/assets/images/user/un_vip.webp')
+                            }
+                        />
+                    </div>
+                    {userDetailState?.isVip !== 1 && (
+                        <div className="text[#969699] mt-[6px]">
+                            您还没有开通vip
+                        </div>
+                    )}
                 </div>
                 <div className="flex justify-around">
                     {typeOptions.map((it) => (

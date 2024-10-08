@@ -12,7 +12,7 @@ import {
     selectorRegisterState,
     selectorLoginModalState,
 } from '@/store/common/selectors';
-import { getUserDetails } from '@/api/home';
+import { getDictList, getUserDetails } from '@/api/home';
 import { useSetUserDetailState } from '@/store/user/hooks';
 import Iframe from '../Iframe';
 import LoginModal from '../Modals/Login';
@@ -24,12 +24,13 @@ type WarpCommonProps = {};
 export const WarpCommon = ({
     children,
 }: PropsWithChildren<WarpCommonProps>) => {
-    const { mutateAsync: mutateGetUserDetails } = useMutation(getUserDetails);
     const loginState = useRecoilValue(selectorTokenInfoState);
-
     const isShowRegisterModal = useRecoilValue(selectorRegisterState);
     const isShowLoginModal = useRecoilValue(selectorLoginModalState);
     const setUserDetailState = useSetUserDetailState();
+    const { mutateAsync: mutateGetDictList } = useMutation(getDictList);
+    const { mutateAsync: mutateGetUserDetails } = useMutation(getUserDetails);
+
     const getUserDetail = useCallback(async () => {
         if (loginState && loginState?.loginId) {
             const res = await mutateGetUserDetails({ id: loginState.loginId });
@@ -39,6 +40,19 @@ export const WarpCommon = ({
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loginState, mutateGetUserDetails]);
+
+    const getDictDetail = useCallback(async () => {
+        if (loginState && loginState?.loginId) {
+            const res = await mutateGetDictList();
+            if (res.code === 200) {
+                console.log(res);
+            }
+        }
+    }, [loginState, mutateGetDictList]);
+
+    useEffect(() => {
+        getDictDetail();
+    }, [getDictDetail]);
 
     useEffect(() => {
         getUserDetail();

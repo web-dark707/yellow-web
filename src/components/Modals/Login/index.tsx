@@ -15,11 +15,13 @@ import { getCaptchaImage, login } from '@/api/login';
 import { LoginParams } from '@/types/api/login';
 import { useSetTokenInfoState } from '@/store/user/hooks';
 import { getStorage, setStorage } from '@/utils/storage';
+import UserToken from '@/common/token';
 type LoginModalProps = {};
 
 const LoginModal: FC<LoginModalProps> = () => {
     const [form] = useForm();
     const setTokenInfo = useSetTokenInfoState();
+
     const setIsShowLoginModal = useSetLoginModalState();
     const setIsShowRegisterModal = useSetRegisterState();
 
@@ -43,6 +45,10 @@ const LoginModal: FC<LoginModalProps> = () => {
         if (res.code === 200) {
             if (res.data.tokenInfo) {
                 setTokenInfo(res.data.tokenInfo);
+                UserToken.setToken(
+                    res.data.tokenInfo.tokenName,
+                    res.data.tokenInfo.tokenValue,
+                );
                 if (checkState) setStorage('username', values.username);
             }
             setIsShowLoginModal(false);

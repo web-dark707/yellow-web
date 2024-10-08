@@ -33,14 +33,14 @@ const User = () => {
                                     <img
                                         className="w-[18px] h-[18px] ml-[4px]"
                                         src={
-                                            userDetailState.isVip
+                                            userDetailState.isVip === 1
                                                 ? require('@/assets/images/user/vip.webp')
                                                 : require('@/assets/images/user/un_vip.webp')
                                         }
                                     />
                                 </div>
-                                {!userDetailState.isVip && (
-                                    <div className="text-[#969699] mt-[6px]">
+                                {userDetailState.isVip !== 1 && (
+                                    <div className="text[#969699] mt-[6px]">
                                         您还没有开通vip
                                     </div>
                                 )}
@@ -58,6 +58,22 @@ const User = () => {
                 <div className="user-card-gradient w-full h-[200px] pt-[12px]">
                     <div className="text-[16px] text-[#972d19] text-center font-bold">
                         VIP特权
+                    </div>
+                    <div className="px-[16px] flex justify-around">
+                        <div className="flex flex-col justify-center items-center">
+                            <img
+                                className="w-[42px] h-[42px]"
+                                src={require('@/assets/images/user/video.png')}
+                            />
+                            <p className="text-[#3e3e40]">解锁海量视频</p>
+                        </div>
+                        <div className="flex flex-col justify-center items-center">
+                            <img
+                                className="w-[42px] h-[42px]"
+                                src={require('@/assets/images/user/remove.png')}
+                            />
+                            <p className="text-[#3e3e40]">过滤播放器广告</p>
+                        </div>
                     </div>
                 </div>
             </div>

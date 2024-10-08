@@ -1,22 +1,22 @@
-import React, { FC, createContext, useContext, useEffect } from 'react';
+import React, { FC, createContext, useContext } from 'react';
 import NatsWrapper from '@/utils/nats';
-import authToken from '@/common/token';
+// import authToken from '@/common/token';
 
 const NatsContext = createContext<NatsWrapper>(null);
 
 export const NatsProvider: FC<any> = ({ children }) => {
     const nats = NatsWrapper.getInstance();
-    const userToken = authToken.getToken() || '';
+    // const userToken = authToken.getToken() || '';
 
-    useEffect(() => {
-        if (userToken) {
-            nats.connect();
-        }
-        return () => {
-            nats.close();
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    // useEffect(() => {
+    //     if (userToken) {
+    //         nats.connect();
+    //     }
+    //     return () => {
+    //         nats.close();
+    //     };
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
     return <NatsContext.Provider value={nats}>{children}</NatsContext.Provider>;
 };
 

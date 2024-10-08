@@ -3,8 +3,8 @@ import { t } from 'i18next';
 import { ContentTypeEnum } from '@/enums/httpEnum';
 import log from '@/utils/log';
 import { Toast } from '@/components/vip-ui';
-import UserToken from '@/common/token';
 import { Recordable } from '@/types/common/global';
+import Token from '@/common/token';
 import type { AxiosInterceptor, CreateAxiosOptions } from './axiosConfig';
 import { iAxios } from './iAxios';
 import { checkStatus } from './axiosStatus';
@@ -22,14 +22,13 @@ const interceptor: AxiosInterceptor = {
          *对请求回来的数据进行处理
          */
         const { data } = res;
-
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         if (data) {
             if (data.code !== 200) {
                 Toast.error({
                     content: data.msg,
                 });
-                if ([10021].includes(data.code)) {
-                    UserToken.clearToken();
+                if ([401].includes(data.code)) {
                     window.location.href = '/login';
                 }
                 return Promise.resolve(errorData(res));
@@ -69,8 +68,11 @@ const interceptor: AxiosInterceptor = {
      */
     requestInterceptors: (config) => {
         const { requestOptions } = config;
+        console.log(requestOptions);
+
         if (requestOptions?.withToken) {
-            (config as Recordable).headers['t'] = UserToken.getToken();
+            (config as Recordable).headers[Token.getTokenName()] =
+                Token.getToken();
             if (requestOptions?.specialToken)
                 (config as Recordable).headers['t'] =
                     requestOptions?.specialToken;
@@ -120,13 +122,14 @@ const interceptor: AxiosInterceptor = {
      */
     responseInterceptorsCatch: (error: any) => {
         // log.error('响应拦截错误', error);
+
         const { response } = error || {};
         checkStatus(response ? response?.status : 500);
         if (error.code === 'ECONNABORTED') {
             Toast.error(t('app.message.error.http408'));
         }
         if (response?.status === 401) {
-            UserToken.clearToken();
+            Token.clearToken();
             window.location.href = '/login';
         }
         return Promise.reject(error);

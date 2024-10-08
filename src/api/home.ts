@@ -10,6 +10,7 @@ enum Api {
     API_VIDEO_LIST = '/api/videoList',
     API_VIDEO_DETAIL = '/api/videoDetail',
     API_USER_DETAIL = '/api/userDetail',
+    API_DICT_LIST = '/api/dictList',
 }
 
 // 获取视频列表
@@ -31,5 +32,11 @@ export const getUserDetails = (params: { id: string }) => {
     return deffHttp.post<UserResult>({
         url: Api.API_USER_DETAIL,
         data: params,
+    });
+};
+export const getDictList = () => {
+    return deffHttp.post<UserResult>({
+        url: Api.API_DICT_LIST,
+        data: { dictType: 'yes_or_no' },
     });
 };
