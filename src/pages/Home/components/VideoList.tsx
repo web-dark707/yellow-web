@@ -13,8 +13,8 @@ import { useSetSearchStateState } from '@/store/config/hooks';
 import VideoPlayerItem from './VideoPlayerItem';
 
 const VideoList = () => {
-    const [videoList, setVideoList] = useState<VideoListItem[]>([]);
     const setSearchStateState = useSetSearchStateState();
+    const [videoList, setVideoList] = useState<VideoListItem[]>([]);
     const searchState = useRecoilValue(selectorSearchState);
     const [pageInfo, setPageInfo] = useState<PageParams>({
         pageNum: 1,
@@ -56,9 +56,7 @@ const VideoList = () => {
 
     // 查询名字时重置数据
     useUpdateEffect(() => {
-        if (searchState) {
-            reset();
-        }
+        reset();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchState]);
 

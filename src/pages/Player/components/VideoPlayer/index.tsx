@@ -10,8 +10,6 @@ interface Props {
 const VideoPlayer = ({ details }: Props) => {
     useEffect(() => {
         if (details) {
-            console.log(details);
-
             const player = new Player({
                 width: '100%',
                 id: 'player',
@@ -24,7 +22,6 @@ const VideoPlayer = ({ details }: Props) => {
 
         // 点击播放事件
         // player.on('play', () => {
-        //     console.log('play');
         //     player.pause();
         // });
     }, [details]);

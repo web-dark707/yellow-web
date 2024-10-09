@@ -68,7 +68,6 @@ const interceptor: AxiosInterceptor = {
      */
     requestInterceptors: (config) => {
         const { requestOptions } = config;
-        console.log(requestOptions);
 
         if (requestOptions?.withToken) {
             (config as Recordable).headers[Token.getTokenName()] =

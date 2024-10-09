@@ -28,7 +28,6 @@ const VideoPlayerItem = ({ videoItem }: Props) => {
         });
         // 点击播放事件
         player.on('play', () => {
-            // console.log('play');
             // player.pause();
         });
         player.on('error', (err) => {

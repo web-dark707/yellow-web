@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
+import { useSetSearchStateState } from '@/store/config/hooks';
 
 type TabBarProps = {};
 
@@ -14,9 +15,10 @@ interface TabBarItem {
 }
 
 const TabBar: FC<TabBarProps> = () => {
-    const [acIndex, setAcIndex] = useState(0);
     const navigate = useNavigate();
     const location = useLocation();
+    const [acIndex, setAcIndex] = useState(0);
+    const setSearchStateState = useSetSearchStateState();
 
     const tabBarList = useMemo<TabBarItem[]>(
         () => [
@@ -26,7 +28,9 @@ const TabBar: FC<TabBarProps> = () => {
                 label: '首页',
                 selectedIcon: require('@/assets/images/icon/tab/home1.png'),
                 unselectedIcon: require('@/assets/images/icon/tab/home0.png'),
-                onClick: () => {},
+                onClick: () => {
+                    setSearchStateState('');
+                },
             },
             {
                 key: 'user',
@@ -37,7 +41,7 @@ const TabBar: FC<TabBarProps> = () => {
                 onClick: () => {},
             },
         ],
-        [],
+        [setSearchStateState],
     );
     const handleClick = (index: number) => {
         setAcIndex(index);

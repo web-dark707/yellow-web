@@ -45,7 +45,7 @@ export const WarpCommon = ({
         if (loginState && loginState?.loginId) {
             const res = await mutateGetDictList();
             if (res.code === 200) {
-                console.log(res);
+                // console.log(res);
             }
         }
     }, [loginState, mutateGetDictList]);

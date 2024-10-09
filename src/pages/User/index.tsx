@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronRightIcon } from '@radix-ui/react-icons';
 import { useRecoilValue } from 'recoil';
 import { Button } from '@/components/vip-ui';
 import { useSetLoginModalState } from '@/store/common/hooks';
@@ -77,7 +76,7 @@ const User = () => {
                     </div>
                 </div>
             </div>
-            <div className="mt-[24px]">
+            {/* <div className="mt-[24px]">
                 <div className="mx-[16px] py-[12px] flex justify-between items-center border-b-1 border-solid border-[#333]">
                     <span>常见问题</span>
                     <ChevronRightIcon className="w-[24px] h-[24px]" />
@@ -86,7 +85,7 @@ const User = () => {
                     <span>联系客服</span>
                     <ChevronRightIcon className="w-[24px] h-[24px]" />
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };
