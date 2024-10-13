@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useRecoilValue } from 'recoil';
-import { CaretDownIcon } from '@radix-ui/react-icons';
+import { CaretDownIcon, Cross2Icon } from '@radix-ui/react-icons';
 import { getVideoList } from '@/api/home';
 import { PageParams } from '@/types/common/global';
 import { selectorSearchState } from '@/store/config/selectors';
@@ -20,6 +20,7 @@ const VideoList = () => {
         pageNum: 1,
         pageSize: 10,
     });
+
     const {
         mutateAsync: mutateGetVideoList,
         data,
@@ -69,7 +70,14 @@ const VideoList = () => {
     return (
         <div className="pb-[24px]">
             <div className="text-[20px] font-semibold px-[12px] mb-[16px]">
-                热门视频
+                {searchState ? (
+                    <div className="flex">
+                        <span className="mr-[8px]">{searchState}</span>
+                        <Cross2Icon onClick={resetList} />
+                    </div>
+                ) : (
+                    <span>热门视频</span>
+                )}
             </div>
             <div className="flex justify-between flex-wrap mx-[12px]">
                 {videoList.length === 0 && isLoading

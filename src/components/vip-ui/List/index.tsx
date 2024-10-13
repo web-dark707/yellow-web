@@ -120,7 +120,10 @@ const List = forwardRef(
             switch (nowStatus) {
                 case 'loading':
                     return loadingArea === void 0 ? (
-                        <div className="flex-row-center mt-8px" id="loading">
+                        <div
+                            className="w-full flex-row-center mt-8px"
+                            id="loading"
+                        >
                             <Loading />
                         </div>
                     ) : (
@@ -128,7 +131,7 @@ const List = forwardRef(
                     );
                 case 'nomore':
                     return noMoreArea === void 0 ? (
-                        <div className="h-40px leading-40px text-center text-[#fff] opacity-40 text-lgSize">
+                        <div className="w-full h-40px leading-40px text-center text-[#fff] opacity-40 text-lgSize">
                             {t('app.ui.noMore')}
                         </div>
                     ) : (
@@ -137,7 +140,7 @@ const List = forwardRef(
                 case 'error':
                     return errorArea === void 0 ? (
                         <div
-                            className="h-40px leading-40px text-center text-[#fff] opacity-40 text-lgSize"
+                            className="w-full h-40px leading-40px text-center text-[#fff] opacity-40 text-lgSize"
                             onClick={handleErrorClick}
                         >
                             {t('app.ui.loadError')}

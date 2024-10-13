@@ -11,6 +11,7 @@ const Home = lazy(() => import('@/pages/Home'));
 const Player = lazy(() => import('@/pages/Player'));
 const Pay = lazy(() => import('@/pages/Pay'));
 const User = lazy(() => import('@/pages/User'));
+const Anchor = lazy(() => import('@/pages/Anchor'));
 
 const NotAuthority = lazy(() => import('@/components/ResultPage/NotAuthority'));
 const NotFound = lazy(() => import('@/components/ResultPage/NotFound'));
@@ -24,6 +25,17 @@ const routeList: RouteObject[] = [
         element: (
             <WrapperRouteComponent
                 element={<Home />}
+                isMotion={false}
+                tabBar
+                navBar
+            />
+        ),
+    },
+    {
+        path: '/anchor',
+        element: (
+            <WrapperRouteComponent
+                element={<Anchor />}
                 isMotion={false}
                 tabBar
                 navBar
@@ -48,7 +60,7 @@ const routeList: RouteObject[] = [
                 tabBar
                 element={<Player />}
                 isMotion={false}
-                navBar
+                navBar={false}
             />
         ),
     },

@@ -69,8 +69,39 @@ export interface UserDetail {
 }
 
 export interface VideoParams extends PageParams {
+    anchorId?: string;
     orderByColumn?: string;
     orderType?: string;
     type?: number;
     name?: string;
+}
+
+export interface AnchorListParams {
+    name?: string;
+    tag?: string;
+}
+
+export type AnchorListResult = CommonList<AnchorListItem>;
+
+export interface AnchorListItem {
+    age: number;
+    content: string;
+    cover: string;
+    id: string;
+    name: string;
+    seriesVideoPrice: number;
+    tag: string;
+}
+
+export interface AnchorDetail {
+    record: {
+        age: number;
+        content: string;
+        cover: string;
+        id: string;
+        invitationCode: string;
+        name: string;
+        seriesVideoPrice: number;
+        tag: string;
+    };
 }

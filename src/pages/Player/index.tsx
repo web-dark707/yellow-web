@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
+import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import { getVideoDetails } from '@/api/home';
 import { getQueryString, isEmpty } from '@/utils/tools';
 import VideoPlayer from './components/VideoPlayer';
@@ -20,7 +21,13 @@ const Player = () => {
     }, [id, mutateGetVideoDetails, navigate]);
 
     return (
-        <div className="w-full h-full pt-[12px]">
+        <div className="w-full h-full ">
+            <div className="w-full h-[60px] px-[24px] flex items-center">
+                <ArrowLeftIcon
+                    className="w-[32px] h-[32px]"
+                    onClick={() => navigate(-1)}
+                />
+            </div>
             <VideoPlayer details={data?.data.record} />
             <div className="px-[16px] pt-[24px]">
                 <div className="text-[18px] font-bold">
@@ -36,7 +43,14 @@ const Player = () => {
                             'YYYY-MM-DD',
                         )}
                     </div>
-                    <div>标签:&nbsp;{data?.data.record.tag}</div>
+                    <div>
+                        标签:&nbsp;
+                        {data?.data.record.tag.split(',').map((text, i) => (
+                            <span className="text-[#FE608E]" key={i}>
+                                #{text}
+                            </span>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
