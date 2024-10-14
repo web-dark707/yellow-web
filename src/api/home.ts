@@ -2,6 +2,8 @@ import {
     AnchorDetail,
     AnchorListParams,
     AnchorListResult,
+    DictListParams,
+    DictResult,
     UserResult,
     VideoDetailsResult,
     VideoListResult,
@@ -39,10 +41,10 @@ export const getUserDetails = (params: { id: string }) => {
         data: params,
     });
 };
-export const getDictList = () => {
-    return deffHttp.post<UserResult>({
+export const getDictList = (params: DictListParams) => {
+    return deffHttp.post<DictResult>({
         url: Api.API_DICT_LIST,
-        data: { dictType: 'yes_or_no' },
+        data: params,
     });
 };
 

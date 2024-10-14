@@ -29,7 +29,7 @@ const TabBar: FC<TabBarProps> = () => {
                 selectedIcon: require('@/assets/images/icon/tab/home1.png'),
                 unselectedIcon: require('@/assets/images/icon/tab/home0.png'),
                 onClick: () => {
-                    setSearchStateState('');
+                    setSearchStateState(null);
                 },
             },
             {

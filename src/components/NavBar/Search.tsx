@@ -22,7 +22,7 @@ const Search = ({ onCancel, visible }: Props) => {
     };
 
     const onSearch = (val) => {
-        setSearchStateState(val);
+        setSearchStateState({ name: val });
         navigate('/home');
         onCancel();
         setInputValue('');

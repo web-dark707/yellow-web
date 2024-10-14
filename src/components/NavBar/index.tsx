@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
+import {
+    MagnifyingGlassIcon,
+    TextAlignJustifyIcon,
+} from '@radix-ui/react-icons';
 import { useSetSearchStateState } from '@/store/config/hooks';
 import Search from './Search';
+import Type from './Type';
 const Header = () => {
     const navigate = useNavigate();
     const setSearchStateState = useSetSearchStateState();
     const [isShowSearch, setIsShowSearch] = useState(false);
+    const [isShowType, setIsShowType] = useState(false);
+
     const handleClick = () => {
         navigate('/home');
-        setSearchStateState('');
+        setSearchStateState(null);
     };
 
     return (
@@ -27,14 +33,22 @@ const Header = () => {
                         className="w-[24px] h-[24px] mr-[8px]"
                         onClick={(e) => setIsShowSearch(true)}
                     />
-
-                    {/* <TextAlignJustifyIcon className="w-[24px] h-[24px]" /> */}
+                    <TextAlignJustifyIcon
+                        className="w-[24px] h-[24px]"
+                        onClick={(e) => setIsShowType(true)}
+                    />
                 </div>
             </div>
             {isShowSearch && (
                 <Search
                     onCancel={() => setIsShowSearch(false)}
                     visible={isShowSearch}
+                />
+            )}
+            {isShowType && (
+                <Type
+                    onCancel={() => setIsShowType(false)}
+                    visible={isShowType}
                 />
             )}
         </div>

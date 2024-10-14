@@ -19,9 +19,7 @@ const AnchorList = () => {
     });
 
     const getAnchorListAsync = useCallback(() => {
-        mutateGetAnchorList({
-            name: searchState,
-        });
+        mutateGetAnchorList(searchState);
     }, [mutateGetAnchorList, searchState]);
 
     const reset = () => {
@@ -44,10 +42,10 @@ const AnchorList = () => {
 
     return (
         <>
-            {anchorList.length > 0 && searchState && (
+            {anchorList.length > 0 && searchState?.name && (
                 <div className="pb-[24px]">
                     <div className="text-[20px] font-semibold px-[12px] mb-[16px]">
-                        {searchState}
+                        {searchState.name}
                     </div>
                     <div className="flex mx-[12px] overflow-x-scroll">
                         {anchorList.map((it) => (

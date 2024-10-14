@@ -1,5 +1,5 @@
 import { selector } from 'recoil';
-import { configState, searchState } from './atoms';
+import { configState, searchState, videoCategoryState } from './atoms';
 
 export const selectorConfigState = selector({
     key: 'selectorConfigState',
@@ -11,4 +11,9 @@ export const selectorConfigState = selector({
 export const selectorSearchState = selector({
     key: 'selectorSearchState',
     get: ({ get }) => get(searchState),
+});
+
+export const selectorVideoCategoryState = selector({
+    key: 'selectorVideoCategoryState',
+    get: ({ get }) => get(videoCategoryState),
 });

@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 import { getStorage } from '@/utils/storage';
-import { ConfigType } from './types';
+import { ConfigType, SearchType, VideoCategoryType } from './types';
 
 // 全局配置
 export const configState = atom<ConfigType>({
@@ -11,7 +11,13 @@ export const configState = atom<ConfigType>({
 });
 
 // 用户信息
-export const searchState = atom<string>({
+export const searchState = atom<SearchType>({
     key: 'searchState',
-    default: '',
+    default: null,
+});
+
+// 视频分类
+export const videoCategoryState = atom<VideoCategoryType[]>({
+    key: 'videoCategoryState',
+    default: [],
 });

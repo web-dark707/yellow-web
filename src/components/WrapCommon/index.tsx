@@ -14,6 +14,7 @@ import {
 } from '@/store/common/selectors';
 import { getDictList, getUserDetails } from '@/api/home';
 import { useSetUserDetailState } from '@/store/user/hooks';
+import { useSetVideoCategoryState } from '@/store/config/hooks';
 import Iframe from '../Iframe';
 import LoginModal from '../Modals/Login';
 import RegisterModal from '../Modals/Register';
@@ -27,6 +28,7 @@ export const WarpCommon = ({
     const loginState = useRecoilValue(selectorTokenInfoState);
     const isShowRegisterModal = useRecoilValue(selectorRegisterState);
     const isShowLoginModal = useRecoilValue(selectorLoginModalState);
+    const setVideoCategoryState = useSetVideoCategoryState();
     const setUserDetailState = useSetUserDetailState();
     const { mutateAsync: mutateGetDictList } = useMutation(getDictList);
     const { mutateAsync: mutateGetUserDetails } = useMutation(getUserDetails);
@@ -42,13 +44,20 @@ export const WarpCommon = ({
     }, [loginState, mutateGetUserDetails]);
 
     const getDictDetail = useCallback(async () => {
-        if (loginState && loginState?.loginId) {
-            const res = await mutateGetDictList();
-            if (res.code === 200) {
-                // console.log(res);
-            }
+        const res = await mutateGetDictList({
+            dictType: 'video_type',
+        });
+        if (res.code === 200) {
+            console.log(res.data.records);
+            setVideoCategoryState(
+                res.data.records.map((it) => ({
+                    value: it.id,
+                    label: it.dictLabel,
+                })),
+            );
         }
-    }, [loginState, mutateGetDictList]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [mutateGetDictList]);
 
     useEffect(() => {
         getDictDetail();

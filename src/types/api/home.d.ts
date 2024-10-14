@@ -105,3 +105,26 @@ export interface AnchorDetail {
         tag: string;
     };
 }
+
+export interface DictListParams {
+    dictType: string;
+}
+
+export type DictResult = CommonList<DictListItem>;
+
+export interface DictListItem {
+    createBy: string;
+    createTime: number;
+    cssClass: string;
+    dictLabel: string;
+    dictSort: 1;
+    dictType: string;
+    dictValue: string;
+    id: string;
+    isDefault: string;
+    listClass: string;
+    remark: string;
+    status: string;
+    updateBy: string;
+    updateTime: number;
+}

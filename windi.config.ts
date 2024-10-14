@@ -23,7 +23,7 @@ export default defineConfig({
             },
             textColor: {
                 baseColor: '#FFFFFF',
-                primaryColor: '#fff',
+                primaryColor: '#FE608E',
                 success: '#4CAF50',
                 error: '#D9001B',
             },
