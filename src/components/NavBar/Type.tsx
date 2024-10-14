@@ -15,7 +15,7 @@ const Type = ({ onCancel, visible }: Props) => {
 
     const onSearch = (val: string) => {
         setSearchStateState({
-            typeId: val,
+            type: val,
         });
         navigate('/home');
         onCancel();

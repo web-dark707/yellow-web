@@ -19,13 +19,13 @@ const Home = () => {
         <div className="w-full">
             <AnchorList />
             <div className="text-[20px] font-semibold px-[12px] mb-[16px]">
-                {searchState?.name || searchState?.typeId ? (
+                {searchState?.name || searchState?.type ? (
                     <div className="flex">
                         <span className="mr-[8px]">
                             {searchState?.name ||
                                 formatLabel(
                                     videoCategoryState,
-                                    searchState?.typeId,
+                                    searchState?.type,
                                 )}
                         </span>
                         <Cross2Icon onClick={() => setSearchStateState(null)} />

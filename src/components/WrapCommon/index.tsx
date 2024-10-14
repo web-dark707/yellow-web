@@ -51,7 +51,7 @@ export const WarpCommon = ({
             console.log(res.data.records);
             setVideoCategoryState(
                 res.data.records.map((it) => ({
-                    value: it.id,
+                    value: it.dictValue,
                     label: it.dictLabel,
                 })),
             );

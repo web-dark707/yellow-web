@@ -5,7 +5,7 @@ export interface ConfigType {
 
 export interface SearchType {
     name?: string;
-    typeId?: string;
+    type?: string;
     anchorId?: string;
 }
 export interface VideoCategoryType {
