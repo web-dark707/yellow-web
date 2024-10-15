@@ -45,9 +45,12 @@ const User = () => {
                                 )}
                             </>
                         ) : (
-                            <div onClick={handleLogin} className="text-[16px]">
+                            <Button
+                                onClick={handleLogin}
+                                className="text-[16px]"
+                            >
                                 登录/注册
-                            </div>
+                            </Button>
                         )}
                     </div>
                     <Button className="w-[90px] h-[36px]" onClick={handlePay}>
