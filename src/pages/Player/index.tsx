@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import { getVideoDetails } from '@/api/home';
 import { getQueryString, isEmpty } from '@/utils/tools';
+import VideoList from '@/components/VideoList';
 import VideoPlayer from './components/VideoPlayer';
 
 const Player = () => {
@@ -44,14 +45,30 @@ const Player = () => {
                         )}
                     </div>
                     <div>
-                        标签:&nbsp;
-                        {data?.data.record.tag.split(',').map((text, i) => (
-                            <span className="text-[#FE608E]" key={i}>
-                                #{text}
-                            </span>
-                        ))}
+                        {data?.data.record.tag && (
+                            <>
+                                标签:&nbsp;
+                                {data?.data.record.tag
+                                    .split(',')
+                                    .map((text, i) => (
+                                        <span
+                                            className="text-[#FE608E]"
+                                            key={i}
+                                        >
+                                            #{text}
+                                        </span>
+                                    ))}
+                            </>
+                        )}
                     </div>
                 </div>
+            </div>
+            <div>
+                <VideoList
+                    params={{
+                        orderByColumn: 'play_count',
+                    }}
+                />
             </div>
         </div>
     );

@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { VideoListItem } from '@/types/api/home';
+import { VideoListItem, VideoParams } from '@/types/api/home';
 import { getVideoList } from '@/api/home';
 import { useUpdateEffect } from '@/hooks';
 import Skeleton from '../vip-ui/Skeleton';
 import { List } from '../vip-ui';
 import VideoPlayerItem from './VideoPlayerItem';
 interface Props {
-    params: {
-        name?: string;
-        anchorId?: string;
-    };
+    params: VideoParams;
 }
 const VideoList = (props: Props) => {
     const { params } = props;

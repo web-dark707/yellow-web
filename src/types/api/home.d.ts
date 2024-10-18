@@ -70,10 +70,12 @@ export interface UserDetail {
 
 export interface VideoParams extends PageParams {
     anchorId?: string;
-    orderByColumn?: string;
     orderType?: string;
-    type?: number;
+    type?: string;
     name?: string;
+    orderByColumn?: any; // 'create_time' | 'recommendationCount' | 'play_count'; //创建时间：create_time，推荐度：recommendationCount，热度：play_count
+    orderType?: 'asc' | 'desc'; //正序：asc，逆序：desc
+    recommendation_count?: number;
 }
 
 export interface AnchorListParams {

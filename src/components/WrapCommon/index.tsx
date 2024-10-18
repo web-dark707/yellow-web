@@ -48,7 +48,6 @@ export const WarpCommon = ({
             dictType: 'video_type',
         });
         if (res.code === 200) {
-            console.log(res.data.records);
             setVideoCategoryState(
                 res.data.records.map((it) => ({
                     value: it.dictValue,
