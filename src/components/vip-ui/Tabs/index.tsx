@@ -1,11 +1,11 @@
 import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import classnames from 'classnames';
 import classNames from 'classnames';
 import { TabItem, TabsProps } from '@/types/vip-ui/tabs';
 
 const Tabs = (props: PropsWithChildren<TabsProps>) => {
     const tabsRef = useRef(null);
+    const scrollRef = useRef(null);
     const {
         tabsClassName = '',
         contentClassName = '',
@@ -18,13 +18,12 @@ const Tabs = (props: PropsWithChildren<TabsProps>) => {
         isUseAnime = true,
         isUseActiveLine = true,
     } = props;
-    const [acIndex, setAcIndex] = useState<number>(0);
+    const [acIndex, setAcIndex] = useState<number | undefined>();
     // 当前选中项
-    const [currentItem, setCurrentItem] = useState<TabItem>();
+    const [currentItem, setCurrentItem] = useState<TabItem | undefined>();
     //激活样式
     const [indicatorStyle, setIndicatorStyle] = useState({});
-    // tab激活选项的位置
-    const [translateX, setTranslateX] = useState(0);
+
     // 选项点击事件
     const handelTabItemClick = (index: number) => {
         setAcIndex(index);
@@ -35,6 +34,15 @@ const Tabs = (props: PropsWithChildren<TabsProps>) => {
 
     const updateIndicator = (index) => {
         const tabsContainer = tabsRef.current;
+        if (scrollRef?.current) {
+            setTimeout(() => {
+                scrollRef.current.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth',
+                });
+            }, 0);
+        }
         if (tabsContainer) {
             const selectedTab = tabsContainer.children[index];
             if (selectedTab) {
@@ -83,55 +91,52 @@ const Tabs = (props: PropsWithChildren<TabsProps>) => {
                 } else {
                     newTranslateX = tabCenter - containerCenter;
                 }
-
-                setTranslateX(-newTranslateX);
+                setTimeout(() => {
+                    scrollRef.current.scrollTo({
+                        top: 0,
+                        left: newTranslateX,
+                        behavior: 'smooth',
+                    });
+                }, 0);
             }
         }
     };
 
     useEffect(() => {
         if (activeKey) {
-            const initialIndex = activeKey
-                ? items.findIndex((it) => it.key === activeKey)
-                : 0;
+            const initialIndex = items.findIndex((it) => it.key === activeKey);
             updateIndicator(initialIndex);
             scrollToCenter(initialIndex);
         } else {
-            updateIndicator(acIndex);
-            scrollToCenter(acIndex);
+            updateIndicator(0);
+            scrollToCenter(0);
+            setAcIndex(undefined);
         }
     }, [activeKey, items, acIndex]);
 
     // 初始化
     useEffect(() => {
         if (activeKey) {
-            const index =
-                items.findIndex((it) => it.key === activeKey) !== -1
-                    ? items.findIndex((it) => it.key === activeKey)
-                    : 0;
+            const index = items.findIndex((it) => it.key === activeKey);
             setAcIndex(index);
             setCurrentItem(items[index]);
         } else {
-            setAcIndex(0);
-            setCurrentItem(items[0]);
+            setAcIndex(undefined);
+            setCurrentItem(undefined);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
     return (
         <>
             {items.length === 0 ? null : (
                 <div className="w-full">
                     <div
-                        className={classnames(
-                            'z-10 top-0 h-45px px-16px pt-15px mb-16px whitespace-nowrap',
+                        ref={scrollRef}
+                        className={classNames(
+                            'tab-scroll-container z-10 top-0 h-45px px-16px pt-15px mb-16px whitespace-nowrap overflow-y-scroll',
                             tabsClassName,
                             isSticky && 'sticky',
                         )}
-                        style={{
-                            transform: `translateX(${translateX}px)`,
-                            transition: 'transform 0.2s',
-                        }}
                     >
                         <div
                             className="relative flex justify-between items-center nowrap text-14px leading-20px"
@@ -150,9 +155,9 @@ const Tabs = (props: PropsWithChildren<TabsProps>) => {
                                         <span className="relative">
                                             <span
                                                 className={classNames(
-                                                    i === acIndex
-                                                        ? 'primary-text-gradient tab-text-shadow'
-                                                        : 'text-[#B3B3B3]',
+                                                    'primary-text-gradient tab-text-shadow opacity-70',
+                                                    i === acIndex &&
+                                                        '!opacity-100',
                                                 )}
                                             >
                                                 {item.label}
@@ -172,7 +177,7 @@ const Tabs = (props: PropsWithChildren<TabsProps>) => {
                                     </div>
                                 );
                             })}
-                            {isUseActiveLine && (
+                            {isUseActiveLine && acIndex !== undefined && (
                                 <motion.div
                                     initial={{ width: 0 }}
                                     animate={indicatorStyle}
@@ -188,23 +193,25 @@ const Tabs = (props: PropsWithChildren<TabsProps>) => {
                         </div>
                     </div>
                     {/* 内容区域 */}
-                    <div className={classnames(contentClassName)}>
-                        {isUseAnime ? (
-                            <AnimatePresence>
-                                <motion.div
-                                    key={acIndex}
-                                    initial={{ opacity: 0, y: '20vw' }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: '-20vw' }}
-                                    transition={{ duration: 0.2 }}
-                                >
-                                    {currentItem?.children}
-                                </motion.div>
-                            </AnimatePresence>
-                        ) : (
-                            currentItem?.children
-                        )}
-                    </div>
+                    {currentItem?.children && (
+                        <div className={classNames(contentClassName)}>
+                            {isUseAnime ? (
+                                <AnimatePresence>
+                                    <motion.div
+                                        key={acIndex}
+                                        initial={{ opacity: 0, y: '20vw' }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: '-20vw' }}
+                                        transition={{ duration: 0.2 }}
+                                    >
+                                        {currentItem.children}
+                                    </motion.div>
+                                </AnimatePresence>
+                            ) : (
+                                currentItem.children
+                            )}
+                        </div>
+                    )}
                 </div>
             )}
         </>

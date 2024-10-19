@@ -13,10 +13,44 @@ const VideoPlayer = ({ details }: Props) => {
             const player = new Player({
                 width: '100%',
                 id: 'player',
+                loading: true,
+
                 poster: details.cover
                     ? API_URL + details.cover
                     : API_URL + details.snapshot, //封面图
                 url: API_URL + details.url,
+                fullscreen: {
+                    rotateFullscreen: true,
+                },
+                playbackRate: {
+                    list: [
+                        {
+                            text: '0.5X',
+                            rate: 0.5,
+                        },
+                        {
+                            text: '0.75X',
+                            rate: 0.75,
+                        },
+                        {
+                            text: '1X',
+                            iconText: '倍速',
+                            rate: 1,
+                        },
+                        {
+                            text: '1.25X',
+                            rate: 1.25,
+                        },
+                        {
+                            text: '1.5X',
+                            rate: 1.5,
+                        },
+                        {
+                            text: '2X',
+                            rate: 2,
+                        },
+                    ],
+                },
             });
         }
 
@@ -28,7 +62,7 @@ const VideoPlayer = ({ details }: Props) => {
 
     return (
         <div className="play-container w-full">
-            <div id="player"></div>
+            <div id="player" className="h-[330px]"></div>
         </div>
     );
 };

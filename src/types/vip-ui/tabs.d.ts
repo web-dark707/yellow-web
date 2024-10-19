@@ -55,7 +55,7 @@ export interface TabItem {
     /**
      * 选项卡显示内容
      */
-    children: ReactNode;
+    children?: ReactNode;
     /**
      * 右上角待办数量
      */

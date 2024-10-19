@@ -13,7 +13,7 @@ export default defineConfig({
             },
             backgroundColor: {
                 baseColor: '#0C0C17',
-                primaryColor: '#C95793',
+                primaryColor: '#FE608E',
                 success: '#4CAF50',
                 error: '#FF5A5A',
             },

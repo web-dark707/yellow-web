@@ -6,5 +6,24 @@
             background-color: #f8688f;
             border-radius: 25px;
         }
+
+        .xgplayer-loading {
+            color: #f8688f !important;
+            border-color: #f8688f !important;
+        }
+
+        .xgplayer-progress-played {
+            background: linear-gradient(-90deg, #f184a1 0%, #f84575 100%);
+        }
+
+        .xg-curbar {
+            background-color: #f8688f !important;
+        }
+
+        .selected,
+        .xg-cur,
+        .xg-seek-show {
+            color: #f14f7a !important;
+        }
     }
 }

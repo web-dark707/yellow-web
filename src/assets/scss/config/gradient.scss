@@ -20,7 +20,14 @@
     background: linear-gradient(180deg, #feecc6, #fec1a1);
 }
 
-.type-btn-gradient {
-    text-shadow: 0 -1px 2px rgba(0, 0, 0, 0.6);
-    background: linear-gradient(110deg, #f9a8ea 0%, #f18cc0 50%, #ff98ae 100%);
+.primary-text-gradient {
+    line-height: 1em;
+    background: linear-gradient(to bottom, #ffedd6, #ffc4ec);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.tab-text-shadow {
+    text-shadow: 0 0 10px rgba(111, 92, 35, 0.6), 0 1px 4px rgba(0, 0, 0, 0.16);
 }

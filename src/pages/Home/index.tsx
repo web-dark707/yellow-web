@@ -9,6 +9,7 @@ import {
     selectorSearchState,
     selectorVideoCategoryState,
 } from '@/store/config/selectors';
+import { Tabs } from '@/components/vip-ui';
 import AnchorList from './components/AnchorList';
 
 const Home = () => {
@@ -16,25 +17,24 @@ const Home = () => {
     const setSearchStateState = useSetSearchStateState();
     const searchState = useRecoilValue(selectorSearchState);
     const videoCategoryState = useRecoilValue(selectorVideoCategoryState);
-    const onSearch = (val: string) => {
+    const onSearch = (i, val: string) => {
         setSearchStateState({
             type: val,
         });
         navigate('/home');
     };
     return (
-        <div className="w-full">
-            <div className="w-full flex justify-between flex-wrap text-[16px] mb-[24px] mt-[12px]">
-                {videoCategoryState.map((it, i) => (
-                    <button
-                        className="type-btn-gradient w-1/4 flex-shrink-0 text-[#fff] text-center py-[10px]"
-                        key={it.value}
-                        onClick={() => onSearch(it.value)}
-                    >
-                        {it.label}
-                    </button>
-                ))}
-            </div>
+        <div className="w-full relative">
+            <Tabs
+                isSticky
+                activeKey={searchState?.type}
+                items={videoCategoryState.map((it) => ({
+                    ...it,
+                    key: it.value,
+                }))}
+                tabsItemClassName="text-[18px]"
+                onChange={onSearch}
+            ></Tabs>
             <AnchorList />
             <div className="text-[20px] font-semibold px-[12px] mb-[16px]">
                 {searchState?.name ||
