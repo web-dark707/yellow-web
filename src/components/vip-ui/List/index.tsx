@@ -169,7 +169,7 @@ const List = forwardRef(
                 style={style}
             >
                 {showEmpty && !isLoading ? (
-                    <Empty className="opacity-25" icon={emptyIcon} />
+                    <Empty className="opacity-25 mx-auto" icon={emptyIcon} />
                 ) : (
                     <>
                         {children}

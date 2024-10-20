@@ -43,7 +43,7 @@ const AnchorList = () => {
     return (
         <>
             {anchorList.length > 0 && searchState?.name && (
-                <div className="pb-[24px]">
+                <div className="pb-[24px] px-[12px]">
                     <div className="text-[20px] font-semibold px-[12px] mb-[16px]">
                         {searchState.name}
                     </div>

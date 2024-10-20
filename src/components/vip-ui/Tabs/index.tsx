@@ -129,13 +129,17 @@ const Tabs = (props: PropsWithChildren<TabsProps>) => {
     return (
         <>
             {items.length === 0 ? null : (
-                <div className="w-full">
+                <div
+                    className={classNames(
+                        'w-full',
+                        isSticky && 'sticky z-10 -top-[1px]',
+                    )}
+                >
                     <div
                         ref={scrollRef}
                         className={classNames(
-                            'tab-scroll-container z-10 top-0 h-45px px-16px pt-15px mb-16px whitespace-nowrap overflow-y-scroll',
+                            'tab-scroll-container h-45px px-16px pt-15px mb-16px whitespace-nowrap overflow-y-scroll',
                             tabsClassName,
-                            isSticky && 'sticky',
                         )}
                     >
                         <div

@@ -14,7 +14,6 @@ const VideoPlayer = ({ details }: Props) => {
                 width: '100%',
                 id: 'player',
                 loading: true,
-
                 poster: details.cover
                     ? API_URL + details.cover
                     : API_URL + details.snapshot, //封面图

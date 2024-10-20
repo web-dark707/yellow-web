@@ -68,7 +68,7 @@ const VideoList = (props: Props) => {
             isError={isError}
             showEmpty={list.length === 0}
             isReset={isReset}
-            className="mt-16px px-[16px] flex justify-between flex-wrap"
+            className="mt-16px flex justify-evenly flex-wrap"
         >
             {list.length === 0 && isLoading
                 ? [1, 2, 3, 4].map((_, index) => (

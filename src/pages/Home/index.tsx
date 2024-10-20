@@ -24,9 +24,10 @@ const Home = () => {
         navigate('/home');
     };
     return (
-        <div className="w-full relative">
+        <div className="w-full">
             <Tabs
                 isSticky
+                tabsClassName="bg-[#0A0913]"
                 activeKey={searchState?.type}
                 items={videoCategoryState.map((it) => ({
                     ...it,
@@ -37,21 +38,14 @@ const Home = () => {
             ></Tabs>
             <AnchorList />
             <div className="text-[20px] font-semibold px-[12px] mb-[16px]">
-                {searchState?.name ||
-                    (searchState?.type && (
-                        <div className="flex">
-                            <span className="mr-[8px]">
-                                {searchState?.name ||
-                                    formatLabel(
-                                        videoCategoryState,
-                                        searchState?.type,
-                                    )}
-                            </span>
-                            <Cross2Icon
-                                onClick={() => setSearchStateState(null)}
-                            />
-                        </div>
-                    ))}
+                {searchState?.type && (
+                    <div className="flex">
+                        <span className="mr-[8px]">
+                            {formatLabel(videoCategoryState, searchState?.type)}
+                        </span>
+                        <Cross2Icon onClick={() => setSearchStateState(null)} />
+                    </div>
+                )}
             </div>
             <VideoList params={searchState} />
         </div>
