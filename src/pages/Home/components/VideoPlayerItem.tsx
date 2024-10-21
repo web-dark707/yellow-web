@@ -23,10 +23,9 @@ const VideoPlayerItem = ({ videoItem }: Props) => {
             autoplay: false,
             autoplayMuted: false,
             volume: 0,
-            poster:
-                API_URL + videoItem.cover
-                    ? API_URL + videoItem.cover
-                    : API_URL + videoItem.snapshot, //封面
+            poster: videoItem.cover
+                ? API_URL + videoItem.cover
+                : API_URL + videoItem.snapshot, //封面
             url: API_URL + videoItem.clipUrl,
         });
         // 点击播放事件
