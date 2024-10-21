@@ -14,6 +14,8 @@ const VideoPlayer = ({ details }: Props) => {
                 width: '100%',
                 id: 'player',
                 loading: true,
+                fluid: true,
+                videoFillMode: 'cover',
                 poster: details.cover
                     ? API_URL + details.cover
                     : API_URL + details.snapshot, //封面图
@@ -50,6 +52,14 @@ const VideoPlayer = ({ details }: Props) => {
                         },
                     ],
                 },
+                commonStyle: {
+                    // 播放完成部分进度条底色
+                    playedColor: '#f8688f',
+                    // 缓存部分进度条底色
+                    cachedColor: '#f8688f',
+                    // 音量颜色
+                    volumeColor: '#f8688f',
+                },
             });
         }
 
@@ -61,7 +71,7 @@ const VideoPlayer = ({ details }: Props) => {
 
     return (
         <div className="play-container w-full">
-            <div id="player" className="h-[330px]"></div>
+            <div id="player"></div>
         </div>
     );
 };
