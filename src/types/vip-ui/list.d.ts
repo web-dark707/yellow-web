@@ -86,6 +86,10 @@ export interface ListProps {
      * 是否需要page分页
      */
     pageIndicator?: boolean;
+    /**
+     * 总页数
+     */
+    total?: number;
 }
 
 export interface ListRef {

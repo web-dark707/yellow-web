@@ -7,6 +7,14 @@ export interface PageIndicatorProps {
      * 页数改变事件
      */
     onChange?: (n: number) => void;
+    /**
+     * 总页数
+     */
+    total?: number;
+    /**
+     * 是否重置
+     */
+    isReset?: boolean;
 }
 
 export interface PageIndicatorRef {

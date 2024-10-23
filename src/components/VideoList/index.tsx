@@ -15,44 +15,38 @@ const VideoList = (props: Props) => {
     const [isReset, setIsReset] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const [list, setList] = useState<VideoListItem[]>([]);
-    const [pageInfo, setPageInfo] = useState({
-        pageNum: 1,
-        pageSize: 10,
-    });
+    // const [pageInfo, setPageInfo] = useState({
+    //     pageNum: 1,
+    //     pageSize: 10,
+    // });
 
     const {
         mutateAsync: mutateGetVideoList,
         isLoading,
         isError,
+        data,
     } = useMutation(getVideoList);
 
     const handleReset = () => {
         setIsReset(true);
-        setPageInfo({
-            pageNum: 1,
-            pageSize: 10,
-        });
-        setHasMore(true);
         setList([]);
     };
 
     const handleCreditList = async (page?: number) => {
         const paramsTemp = {
-            ...pageInfo,
+            pageNum: page ?? 1,
+            pageSize: 10,
             ...params,
         };
-        if (page !== undefined) {
-            paramsTemp.pageNum = page;
-        }
         const res = await mutateGetVideoList(paramsTemp);
 
         if (res.code === 200) {
             if (res?.data?.records?.length) {
                 setHasMore(true);
-                setPageInfo((prev) => ({
-                    ...prev,
-                    pageNum: pageInfo.pageNum + 1,
-                }));
+                // setPageInfo((prev) => ({
+                //     ...prev,
+                //     pageNum: pageInfo.pageNum + 1,
+                // }));
 
                 setList(res?.data?.records);
                 listRef.current.scrollTo({
@@ -67,7 +61,9 @@ const VideoList = (props: Props) => {
     };
 
     useUpdateEffect(() => {
-        handleReset();
+        if (params) {
+            handleReset();
+        }
     }, [params]);
 
     return (
@@ -80,6 +76,7 @@ const VideoList = (props: Props) => {
                 isError={isError}
                 showEmpty={list.length === 0}
                 isReset={isReset}
+                total={data?.data?.total}
                 className="mt-16px flex justify-evenly flex-wrap pb-[30px]"
             >
                 {list.length === 0 && isLoading

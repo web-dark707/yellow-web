@@ -13,14 +13,14 @@ import {
     PageIndicatorProps,
     PageIndicatorRef,
 } from '@/types/vip-ui/pageIndicator';
-import { usePrevious } from '@/hooks';
+import { usePrevious, useUpdateEffect } from '@/hooks';
 
 const PageIndicator = forwardRef(
     (
         props: PropsWithChildren<PageIndicatorProps>,
         ref: Ref<PageIndicatorRef>,
     ) => {
-        const { className, onChange } = props;
+        const { className, onChange, total, isReset = false } = props;
         const domRef = useRef<HTMLDivElement | null>(null);
         const [current, setCurrent] = useState<number>();
         const [numList, setNumList] = useState([]);
@@ -28,7 +28,6 @@ const PageIndicator = forwardRef(
         useImperativeHandle(ref, () => ({
             dom: domRef.current,
         }));
-        const total = 10;
         const count = 3;
 
         const handlePrev = () => {
@@ -44,7 +43,11 @@ const PageIndicator = forwardRef(
         };
         const handleNumClick = (i) => {
             setCurrent(i);
-            // changeNumList(i);
+        };
+        const initNumList = () => {
+            const temp = Array.from({ length: count }, (_, i) => i + 1);
+            setNumList(temp);
+            setCurrent(temp[0]);
         };
 
         useEffect(() => {
@@ -62,10 +65,14 @@ const PageIndicator = forwardRef(
             // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [current]);
 
+        useUpdateEffect(() => {
+            if (isReset) {
+                initNumList();
+            }
+        }, [isReset]);
+
         useEffect(() => {
-            const temp = Array.from({ length: count }, (_, i) => i + 1);
-            setNumList(temp);
-            setCurrent(temp[0]);
+            initNumList();
         }, []);
 
         return (

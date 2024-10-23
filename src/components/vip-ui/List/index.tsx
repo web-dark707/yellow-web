@@ -40,6 +40,7 @@ const List = forwardRef(
             emptyIcon,
             firstLoad = true,
             pageIndicator = false,
+            total = 0,
         } = props;
         const domRef = useRef<HTMLDivElement | null>(null);
         const [nowStatus, setNowStatus] = useState<ListStatus>('default');
@@ -185,7 +186,13 @@ const List = forwardRef(
                         {renderArea()}
                     </>
                 )}
-                {pageIndicator && <PageIndicator onChange={handleChange} />}
+                {pageIndicator && (
+                    <PageIndicator
+                        isReset={isReset}
+                        onChange={handleChange}
+                        total={total}
+                    />
+                )}
             </div>
         );
     },
