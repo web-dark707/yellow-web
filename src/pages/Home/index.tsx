@@ -24,7 +24,7 @@ const Home = () => {
         navigate('/home');
     };
     return (
-        <div className="w-full">
+        <div className="w-full h-full">
             <Tabs
                 isSticky
                 tabsClassName="bg-[#0A0913]"

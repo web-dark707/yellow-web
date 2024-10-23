@@ -16,6 +16,7 @@ import { useMemoizedFn, useUpdateEffect } from '@/hooks';
 import { Empty, Loading } from '@/components/vip-ui';
 import { pxToVw } from '@/config/pxtovw';
 import { randomString } from '@/utils/tools';
+import PageIndicator from '../PageIndicator';
 
 const List = forwardRef(
     (props: PropsWithChildren<ListProps>, ref: Ref<ListRef>) => {
@@ -38,6 +39,7 @@ const List = forwardRef(
             isReset = false,
             emptyIcon,
             firstLoad = true,
+            pageIndicator = false,
         } = props;
         const domRef = useRef<HTMLDivElement | null>(null);
         const [nowStatus, setNowStatus] = useState<ListStatus>('default');
@@ -59,27 +61,34 @@ const List = forwardRef(
             }
         }, [getDataRun, hasMore, isError, isLoading, onEndReached]);
 
+        const handleChange = (page?: number) => {
+            getDataRun(page);
+        };
+
         const scrollFunc = throttle
             ? lodashThrottle(handleContainerScroll, throttle)
             : handleContainerScroll;
 
         useEffect(() => {
-            const scrollDomRef = document.getElementById(domId.current);
-            observer.current = new IntersectionObserver((entries) => {
-                if (entries[0].isIntersecting) {
-                    scrollFunc();
-                }
-            });
+            if (!pageIndicator) {
+                const scrollDomRef = document.getElementById(domId.current);
+                observer.current = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        scrollFunc();
+                    }
+                });
 
-            if (observer.current && scrollDomRef) {
-                observer.current.observe(scrollDomRef);
+                if (observer.current && scrollDomRef) {
+                    observer.current.observe(scrollDomRef);
+                }
+
+                return () => {
+                    if (observer.current) {
+                        observer.current.disconnect();
+                    }
+                };
             }
-
-            return () => {
-                if (observer.current) {
-                    observer.current.disconnect();
-                }
-            };
+            // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [scrollFunc]);
 
         // 初始化请求
@@ -176,6 +185,7 @@ const List = forwardRef(
                         {renderArea()}
                     </>
                 )}
+                {pageIndicator && <PageIndicator onChange={handleChange} />}
             </div>
         );
     },

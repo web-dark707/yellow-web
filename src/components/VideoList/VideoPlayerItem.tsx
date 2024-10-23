@@ -19,7 +19,7 @@ const VideoPlayerItem = ({ videoItem }: Props) => {
 
     return (
         <div
-            className="w-[168px] mb-[16px] relative rounded-[12px]"
+            className="w-[168px] mb-[16px] relative rounded-[12px] text-[#fff]"
             onClick={handleClick}
         >
             <div className="w-[168px] h-[120px] rounded-[4px] overflow-hidden">
@@ -37,10 +37,12 @@ const VideoPlayerItem = ({ videoItem }: Props) => {
                 ></div>
             </div>
             {/* 时长 */}
-            <div className="absolute bottom-[24px] right-1 rounded-lg px-2 py-1 text-xs bg-gray-800 bg-opacity-75">
+            <div className="absolute bottom-[65px] right-1 rounded-lg px-2 py-1 text-xs bg-gray-800 bg-opacity-75">
                 {videoItem.duration}
             </div>
-            <div className="w-full truncate mt-[4px]">{videoItem.name}</div>
+            <div className="w-full line-clamp-2 mt-[4px] text-[#fff]">
+                {videoItem.name}
+            </div>
         </div>
     );
 };

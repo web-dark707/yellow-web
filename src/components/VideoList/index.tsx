@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { VideoListItem, VideoParams } from '@/types/api/home';
 import { getVideoList } from '@/api/home';
@@ -11,6 +11,7 @@ interface Props {
 }
 const VideoList = (props: Props) => {
     const { params } = props;
+    const listRef = useRef<HTMLDivElement>();
     const [isReset, setIsReset] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const [list, setList] = useState<VideoListItem[]>([]);
@@ -35,11 +36,16 @@ const VideoList = (props: Props) => {
         setList([]);
     };
 
-    const handleCreditList = async () => {
-        const res = await mutateGetVideoList({
+    const handleCreditList = async (page?: number) => {
+        const paramsTemp = {
             ...pageInfo,
             ...params,
-        });
+        };
+        if (page !== undefined) {
+            paramsTemp.pageNum = page;
+        }
+        const res = await mutateGetVideoList(paramsTemp);
+
         if (res.code === 200) {
             if (res?.data?.records?.length) {
                 setHasMore(true);
@@ -48,7 +54,11 @@ const VideoList = (props: Props) => {
                     pageNum: pageInfo.pageNum + 1,
                 }));
 
-                setList(list.concat(res?.data?.records));
+                setList(res?.data?.records);
+                listRef.current.scrollTo({
+                    top: -200,
+                    behavior: 'smooth',
+                });
             } else {
                 setHasMore(false);
             }
@@ -61,26 +71,29 @@ const VideoList = (props: Props) => {
     }, [params]);
 
     return (
-        <List
-            getData={handleCreditList}
-            hasMore={hasMore}
-            isLoading={isLoading}
-            isError={isError}
-            showEmpty={list.length === 0}
-            isReset={isReset}
-            className="mt-16px flex justify-evenly flex-wrap"
-        >
-            {list.length === 0 && isLoading
-                ? [1, 2, 3, 4].map((_, index) => (
-                      <Skeleton
-                          key={index}
-                          className="w-[168px] h-[100px] mb-[12px]"
-                      />
-                  ))
-                : list.map((item, i) => (
-                      <VideoPlayerItem key={i} videoItem={item} />
-                  ))}
-        </List>
+        <div ref={listRef} className="overflow-y-scroll h-full">
+            <List
+                pageIndicator
+                getData={handleCreditList}
+                hasMore={hasMore}
+                isLoading={isLoading}
+                isError={isError}
+                showEmpty={list.length === 0}
+                isReset={isReset}
+                className="mt-16px flex justify-evenly flex-wrap pb-[30px]"
+            >
+                {list.length === 0 && isLoading
+                    ? [1, 2, 3, 4].map((_, index) => (
+                          <Skeleton
+                              key={index}
+                              className="w-[168px] h-[100px] mb-[12px]"
+                          />
+                      ))
+                    : list.map((item, i) => (
+                          <VideoPlayerItem key={i} videoItem={item} />
+                      ))}
+            </List>
+        </div>
     );
 };
 

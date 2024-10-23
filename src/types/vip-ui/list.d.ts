@@ -15,7 +15,7 @@ export interface ListProps {
     /**
      * 获取数据
      */
-    getData: () => void | Promise<any>;
+    getData: (page?: number) => void | Promise<any>;
 
     /**
      * 数据是否正在加载中
@@ -82,6 +82,10 @@ export interface ListProps {
      * 是否需要首次加载
      */
     firstLoad?: boolean;
+    /**
+     * 是否需要page分页
+     */
+    pageIndicator?: boolean;
 }
 
 export interface ListRef {

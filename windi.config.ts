@@ -5,6 +5,7 @@ export default defineConfig({
         include: ['**/*.{jsx,js,ts,tsx,css,html}'],
         exclude: ['node_modules', '.git', 'dist/**/*'],
     },
+    plugins: [require('windicss/plugin/line-clamp')],
     theme: {
         extend: {
             zIndex: {
