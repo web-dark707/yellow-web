@@ -1,0 +1,25 @@
+.play-container {
+    .xgplayer {
+        .selected,
+        .xg-cur,
+        .xg-seek-show {
+            color: #f14f7a !important;
+        }
+    }
+}
+
+.plugin-box {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0 12px;
+
+    .icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .rewind {
+        margin-right: 12px;
+    }
+}

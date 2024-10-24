@@ -4,6 +4,7 @@ import { VideoDetailsItem } from '@/types/api/home';
 import 'xgplayer/dist/index.min.css';
 import { API_URL } from '@/common/constants';
 import './index.scss';
+import ForwardPlugin from './ForwardPlugin';
 interface Props {
     details: VideoDetailsItem;
 }
@@ -23,6 +24,7 @@ const VideoPlayer = ({ details }: Props) => {
                 fullscreen: {
                     rotateFullscreen: true,
                 },
+                plugins: [ForwardPlugin],
                 playbackRate: {
                     list: [
                         {

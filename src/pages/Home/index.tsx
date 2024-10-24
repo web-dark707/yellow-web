@@ -37,7 +37,7 @@ const Home = () => {
                 onChange={onSearch}
             ></Tabs>
             <AnchorList />
-            <div className="text-[20px] font-semibold px-[12px] mb-[16px]">
+            <div className="text-[20px] font-semibold px-[12px]">
                 {searchState?.type && (
                     <div className="flex">
                         <span className="mr-[8px]">

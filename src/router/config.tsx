@@ -58,10 +58,10 @@ export const WrapperRouteComponent: FC<WrapperRouteProps> = ({
                 {navBar && <NavBar />}
                 <div
                     className={classNames(
-                        'flex-1 overflow-y-auto overflow-x-hidden contents-wrap',
-                        // {
-                        //     'pb-60px': tabBar,
-                        // },
+                        'flex-1 overflow-y-auto overflow-x-hidden contents-wrap scroll-dom',
+                        {
+                            'pb-60px': tabBar,
+                        },
                     )}
                     ref={myref}
                 >

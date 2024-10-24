@@ -173,7 +173,7 @@ const List = forwardRef(
 
         return (
             <div
-                className={classNames(className, 'w-full h-auto')}
+                className={classNames(className, 'w-full')}
                 ref={domRef}
                 onClick={handleClick}
                 style={style}

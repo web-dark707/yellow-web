@@ -47,10 +47,9 @@ const VideoList = (props: Props) => {
                 //     ...prev,
                 //     pageNum: pageInfo.pageNum + 1,
                 // }));
-
                 setList(res?.data?.records);
-                listRef.current.scrollTo({
-                    top: -200,
+                document.getElementsByClassName('scroll-dom')[0].scrollTo({
+                    top: 0,
                     behavior: 'smooth',
                 });
             } else {
@@ -67,7 +66,7 @@ const VideoList = (props: Props) => {
     }, [params]);
 
     return (
-        <div ref={listRef} className="overflow-y-scroll h-full">
+        <div ref={listRef} className="h-full">
             <List
                 pageIndicator
                 getData={handleCreditList}
@@ -77,7 +76,7 @@ const VideoList = (props: Props) => {
                 showEmpty={list.length === 0}
                 isReset={isReset}
                 total={data?.data?.total}
-                className="mt-16px flex justify-evenly flex-wrap pb-[30px]"
+                className="mt-16px flex justify-evenly flex-wrap"
             >
                 {list.length === 0 && isLoading
                     ? [1, 2, 3, 4].map((_, index) => (
