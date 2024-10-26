@@ -13,27 +13,38 @@ import {
     PageIndicatorProps,
     PageIndicatorRef,
 } from '@/types/vip-ui/pageIndicator';
-import { usePrevious, useUpdateEffect } from '@/hooks';
+import { useUpdateEffect } from '@/hooks';
+import { isInteger } from '@/utils/validate';
+import Input from '../Input';
 
 const PageIndicator = forwardRef(
     (
         props: PropsWithChildren<PageIndicatorProps>,
         ref: Ref<PageIndicatorRef>,
     ) => {
-        const { className, onChange, total, isReset = false } = props;
+        const {
+            className,
+            onChange,
+            total,
+            isReset = false,
+            currentValue = 1,
+        } = props;
         const domRef = useRef<HTMLDivElement | null>(null);
-        const [current, setCurrent] = useState<number>();
-        const [numList, setNumList] = useState([]);
-        const prev = usePrevious(current);
+        const [current, setCurrent] = useState<number>(currentValue);
         useImperativeHandle(ref, () => ({
             dom: domRef.current,
         }));
-        const count = 3;
 
         const handlePrev = () => {
             if (current !== 1) {
                 setCurrent(current - 1);
             } else return;
+        };
+        const handleConfirm = (e: any) => {
+            e.target.blur();
+            if (e.target.value && e.target.value !== 0) {
+                setCurrent(Number(e.target.value));
+            }
         };
 
         const handleNext = () => {
@@ -41,27 +52,13 @@ const PageIndicator = forwardRef(
                 setCurrent(current + 1);
             } else return;
         };
-        const handleNumClick = (i) => {
-            setCurrent(i);
-        };
+
         const initNumList = () => {
-            const temp = Array.from({ length: count }, (_, i) => i + 1);
-            setNumList(temp);
-            setCurrent(temp[0]);
+            setCurrent(1);
         };
 
         useEffect(() => {
             onChange && onChange(current);
-            if (current && current + 1 <= total && current - 1 > 0) {
-                const temp = Array.from({ length: count }, (_, i) => {
-                    if (current > prev) {
-                        return i + current - 1;
-                    } else if (current < prev) {
-                        return i + current - 1;
-                    }
-                });
-                setNumList(temp);
-            }
             // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [current]);
 
@@ -81,23 +78,30 @@ const PageIndicator = forwardRef(
                     key="left"
                     onClick={handlePrev}
                     className={classNames(
-                        'w-[32px] h-[32px] bg-primaryColor rounded-lg mr-[4px]',
-                        current === numList[0] && 'opacity-55',
+                        'w-[32px] h-[32px] bg-primaryColor rounded-lg',
+                        current === 1 && 'opacity-55',
                     )}
                 />
-                {numList.map((i) => (
-                    <div
-                        className={classNames(
-                            'h-[32px] w-[32px] leading-[32px] text-center bg-[#2F2A2A] rounded-lg mr-[4px]',
-                            current === i &&
-                                'border-1 border-solid border-primaryColor',
-                        )}
-                        key={i}
-                        onClick={() => handleNumClick(i)}
-                    >
-                        {i}
+                <div className="h-[32px] w-[100px] px-[4px] mx-[8px] flex items-center border-1 border-solid border-primaryColor rounded-md overflow-hidden font-bold">
+                    <Input
+                        nativeProps={{
+                            enterKeyHint: 'search',
+                            autoCorrect: 'off',
+                            autoCapitalize: 'off',
+                            spellCheck: 'false',
+                        }}
+                        type="number"
+                        value={String(current)}
+                        className="h-full"
+                        inputClass="!px-0 text-center"
+                        isClear={false}
+                        onPressEnter={handleConfirm}
+                        validator={isInteger}
+                    />
+                    <div className="h-full flex-row-center px-[4px] text-[#6B7280]">
+                        /{total}
                     </div>
-                ))}
+                </div>
                 <CaretRightIcon
                     key="right"
                     onClick={handleNext}

@@ -99,6 +99,7 @@ export function useInputLogic(
                 shouldPreventEvent.current = false;
                 return;
             }
+            e.target.select();
             setIsFocusing(true);
             onFocus && onFocus(e);
         });

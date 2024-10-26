@@ -75,7 +75,9 @@ const VideoList = (props: Props) => {
                 isError={isError}
                 showEmpty={list.length === 0}
                 isReset={isReset}
-                total={data?.data?.total}
+                total={
+                    data?.data?.total ? Math.ceil(data?.data?.total / 10) : 0
+                }
                 className="mt-16px flex justify-evenly flex-wrap"
             >
                 {list.length === 0 && isLoading

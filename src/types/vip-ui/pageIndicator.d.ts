@@ -15,6 +15,10 @@ export interface PageIndicatorProps {
      * 是否重置
      */
     isReset?: boolean;
+    /**
+     * 当前页码
+     */
+    currentValue?: number;
 }
 
 export interface PageIndicatorRef {
