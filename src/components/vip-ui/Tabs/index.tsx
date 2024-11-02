@@ -138,7 +138,7 @@ const Tabs = (props: PropsWithChildren<TabsProps>) => {
                     <div
                         ref={scrollRef}
                         className={classNames(
-                            'tab-scroll-container h-45px px-16px pt-15px mb-16px whitespace-nowrap overflow-y-scroll',
+                            'tab-scroll-container h-45px px-16px pt-15px mb-16px whitespace-nowrap overflow-y-scroll border-b-1 border-[#252220] border-solid',
                             tabsClassName,
                         )}
                     >
@@ -159,7 +159,7 @@ const Tabs = (props: PropsWithChildren<TabsProps>) => {
                                         <span className="relative">
                                             <span
                                                 className={classNames(
-                                                    'primary-text-gradient tab-text-shadow opacity-70',
+                                                    'primary-text-gradient tab-text-shadow opacity-80 font-bold text-[16px]',
                                                     i === acIndex &&
                                                         '!opacity-100',
                                                 )}
@@ -189,7 +189,7 @@ const Tabs = (props: PropsWithChildren<TabsProps>) => {
                                 >
                                     <div
                                         className={classNames(
-                                            'bg-primaryColor w-[45%] h-2px m-auto rounded-12px',
+                                            'bg-primaryColor w-[60%] h-2px m-auto rounded-12px',
                                         )}
                                     />
                                 </motion.div>

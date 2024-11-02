@@ -141,3 +141,9 @@ body {
     background-size: auto 100%;
     // background-repeat: no-repeat;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none !important;
+}

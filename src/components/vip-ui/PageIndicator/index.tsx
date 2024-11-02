@@ -57,6 +57,13 @@ const PageIndicator = forwardRef(
             setCurrent(1);
         };
 
+        const handleInput = (e) => {
+            if (e.target.value && e.target.value > total) {
+                e.target.value = total;
+                setCurrent(total);
+            }
+        };
+
         useEffect(() => {
             onChange && onChange(current);
             // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -95,6 +102,7 @@ const PageIndicator = forwardRef(
                         className="h-full"
                         inputClass="!px-0 text-center"
                         isClear={false}
+                        onInput={handleInput}
                         onPressEnter={handleConfirm}
                         validator={isInteger}
                     />
