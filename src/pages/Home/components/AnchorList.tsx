@@ -6,7 +6,7 @@ import { getAnchorList } from '@/api/home';
 import { selectorSearchState } from '@/store/config/selectors';
 import { useUpdateEffect } from '@/hooks';
 import { AnchorListItem } from '@/types/api/home';
-import { API_URL } from '@/common/constants';
+import { IMAGE_URL } from '@/common/constants';
 
 const AnchorList = () => {
     const navigate = useNavigate();
@@ -56,7 +56,7 @@ const AnchorList = () => {
                             >
                                 <img
                                     className="w-[80px] h-[80px] rounded-full"
-                                    src={it.cover ? API_URL + it.cover : ''}
+                                    src={it.cover ? IMAGE_URL + it.cover : ''}
                                 />
                                 <span>{it.name}</span>
                             </div>

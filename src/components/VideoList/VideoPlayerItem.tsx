@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { VideoListItem } from '@/types/api/home';
-import { API_URL } from '@/common/constants';
+import { IMAGE_URL } from '@/common/constants';
 import 'xgplayer/dist/index.min.css';
 
 interface Props {
@@ -29,8 +29,8 @@ const VideoPlayerItem = ({ videoItem }: Props) => {
                         backgroundImage: `url(${
                             new URL(
                                 videoItem.cover
-                                    ? API_URL + videoItem.cover
-                                    : API_URL + videoItem.snapshot,
+                                    ? IMAGE_URL + videoItem.cover
+                                    : IMAGE_URL + videoItem.snapshot,
                             ).href
                         })`,
                     }}

@@ -2,7 +2,6 @@ import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import classNames from 'classnames';
 import { TabItem, TabsProps } from '@/types/vip-ui/tabs';
-
 const Tabs = (props: PropsWithChildren<TabsProps>) => {
     const tabsRef = useRef(null);
     const scrollRef = useRef(null);
@@ -138,7 +137,7 @@ const Tabs = (props: PropsWithChildren<TabsProps>) => {
                     <div
                         ref={scrollRef}
                         className={classNames(
-                            'tab-scroll-container h-45px px-16px pt-15px mb-16px whitespace-nowrap overflow-y-scroll border-b-1 border-[#252220] border-solid',
+                            'tab-scroll-container h-45px px-16px pt-15px mb-16px whitespace-nowrap overflow-x-scroll border-b-1 border-[#252220] border-solid',
                             tabsClassName,
                         )}
                     >
@@ -159,24 +158,74 @@ const Tabs = (props: PropsWithChildren<TabsProps>) => {
                                         <span className="relative">
                                             <span
                                                 className={classNames(
-                                                    'primary-text-gradient tab-text-shadow opacity-80 font-bold text-[16px]',
+                                                    'tab-text-shadow opacity-60 font-bold text-[16px]',
                                                     i === acIndex &&
-                                                        '!opacity-100',
+                                                        '!opacity-100 text-[#FE608E]',
                                                 )}
                                             >
                                                 {item.label}
                                             </span>
-                                            {item?.dotNum &&
-                                            Number(item.dotNum) > 0 ? (
-                                                <span
-                                                    className={classNames(
-                                                        'px-[2px] inline-block min-w-[12px] min-h-[12px] leading-[12px] rounded-full text-[10px] absolute top-[-4px] right-[-16px] bg-error text-[#fff]',
-                                                        dotClassName,
-                                                    )}
+                                            {i < 4 && (
+                                                <svg
+                                                    className="absolute -top-[2px] -right-[13px] w-[16px] h-[16px]"
+                                                    xmlSpace="preserve"
+                                                    viewBox="0 0 100 100"
+                                                    y="0"
+                                                    x="0"
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    version="1.1"
+                                                    style={{
+                                                        margin: 'initial',
+                                                        display: 'block',
+                                                        shapeRendering: 'auto',
+                                                        background:
+                                                            'rgba(255, 255, 255, 0)',
+                                                    }}
+                                                    preserveAspectRatio="xMidYMid"
+                                                    width="200"
+                                                    height="200"
                                                 >
-                                                    {item.dotNum}
-                                                </span>
-                                            ) : null}
+                                                    <g
+                                                        className="ldl-scale"
+                                                        style={{
+                                                            transformOrigin:
+                                                                '50% 50%',
+                                                            transform:
+                                                                'rotate(0deg) scale(0.8, 0.8)',
+                                                        }}
+                                                    >
+                                                        <g className="ldl-ani">
+                                                            <g className="ldl-layer">
+                                                                <g
+                                                                    className="ldl-ani"
+                                                                    style={{
+                                                                        opacity: 1,
+                                                                        transformOrigin:
+                                                                            '50px 50px',
+                                                                        transform:
+                                                                            'matrix3d(0.91, 0, 0, 0, 0, 0.91, 0, 0, 0, 0, 0.91, 0, 0, 0, 0, 1)',
+                                                                        animation:
+                                                                            '1s linear -1s infinite normal forwards running animate',
+                                                                        transformBox:
+                                                                            'view-box',
+                                                                    }}
+                                                                >
+                                                                    <path
+                                                                        fill="#e15b64"
+                                                                        clipRule="evenodd"
+                                                                        fillRule="evenodd"
+                                                                        d="M24.6 79.4C21.4 74 20 67.2 21.8 61.1c1.7-5.6 5.5-10.4 9.3-14.7 4.2-4.9 8.9-9.6 11.5-15.6 3.2-7.4 2.7-16.3-1.3-23.3 2.2 2.1 5.2 3 7.9 4.3 5.7 2.7 10.5 7.5 12.8 13.4 2.3 5.9 2 12.8-1.2 18.3-3.6 6.3-11.1 10.2-12.3 17.8-.4 2.9.6 6.2 3.3 7.5.9.4 1.9.6 2.9.6 3.8-.1 7.3-2.6 9.5-5.8 3.8-5.3 3.8-10.9 2.9-17.1 1.7.4 3.6 2.8 4.7 4.1 5.2 5.9 8.9 15.4 6.5 23.2-1.6 5-5.1 9.3-9.3 12.4-8.5 6.3-20.1 8-30 4.4-6-2-11.2-5.9-14.4-11.2z"
+                                                                        style={{
+                                                                            strokeWidth: 1,
+                                                                            fill: 'rgb(203, 39, 86)',
+                                                                        }}
+                                                                    ></path>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                            )}
                                         </span>
                                     </div>
                                 );

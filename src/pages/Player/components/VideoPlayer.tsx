@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Player from 'xgplayer';
 import { VideoDetailsItem } from '@/types/api/home';
 import 'xgplayer/dist/index.min.css';
-import { API_URL } from '@/common/constants';
+import { IMAGE_URL } from '@/common/constants';
 import './index.scss';
 import ForwardPlugin from './ForwardPlugin';
 interface Props {
@@ -18,9 +18,9 @@ const VideoPlayer = ({ details }: Props) => {
                 fluid: true,
                 videoFillMode: 'cover',
                 poster: details.cover
-                    ? API_URL + details.cover
-                    : API_URL + details.snapshot, //封面图
-                url: API_URL + details.url,
+                    ? IMAGE_URL + details.cover
+                    : IMAGE_URL + details.snapshot, //封面图
+                url: IMAGE_URL + details.url,
                 fullscreen: {
                     rotateFullscreen: true,
                 },
@@ -63,6 +63,10 @@ const VideoPlayer = ({ details }: Props) => {
                     volumeColor: '#f8688f',
                 },
             });
+            // 退出时销毁
+            return () => {
+                player.destroy();
+            };
         }
 
         // 点击播放事件

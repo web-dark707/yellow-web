@@ -3,7 +3,7 @@ import Player from 'xgplayer';
 import { useNavigate } from 'react-router-dom';
 import { VideoListItem } from '@/types/api/home';
 import 'xgplayer/dist/index.min.css';
-import { API_URL } from '@/common/constants';
+import { IMAGE_URL } from '@/common/constants';
 
 interface Props {
     videoItem: VideoListItem;
@@ -24,9 +24,9 @@ const VideoPlayerItem = ({ videoItem }: Props) => {
             autoplayMuted: false,
             volume: 0,
             poster: videoItem.cover
-                ? API_URL + videoItem.cover
-                : API_URL + videoItem.snapshot, //封面
-            url: API_URL + videoItem.clipUrl,
+                ? IMAGE_URL + videoItem.cover
+                : IMAGE_URL + videoItem.snapshot, //封面
+            url: IMAGE_URL + videoItem.clipUrl,
         });
         // 点击播放事件
         player.on('play', () => {

@@ -47,6 +47,7 @@ const Home = () => {
                     </div>
                 )}
             </div>
+
             <VideoList params={searchState} />
         </div>
     );

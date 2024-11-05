@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { getQueryString } from '@/utils/tools';
 import { getAnchorDetail } from '@/api/home';
 import VideoList from '@/components/VideoList';
-import { API_URL } from '@/common/constants';
+import { IMAGE_URL } from '@/common/constants';
 
 const Anchor = () => {
     const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Anchor = () => {
                         className="w-[100px] h-[100px] rounded-full"
                         src={
                             data?.data?.record.cover
-                                ? API_URL + data?.data.record.cover
+                                ? IMAGE_URL + data?.data.record.cover
                                 : ''
                         }
                     />

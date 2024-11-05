@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import classNames from 'classnames';
 import NavBar from '@/components/NavBar';
 import { localeState } from '@/store/common/atoms';
-import { API_URL } from '@/common/constants';
+import { IMAGE_URL } from '@/common/constants';
 import { Loading } from '@/components/vip-ui';
 import TabBar from '@/components/TabBar';
 import PrivateRoute from './privateRoute';
@@ -45,7 +45,7 @@ export const WrapperRouteComponent: FC<WrapperRouteProps> = ({
                 <html lang={locale.locale} />
                 <meta property="og:title" content={title} />
                 <title>{title}</title>
-                <link rel="canonical" href={API_URL} />
+                <link rel="canonical" href={IMAGE_URL} />
             </Helmet>
             <main
                 className={classNames(
