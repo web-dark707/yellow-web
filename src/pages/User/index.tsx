@@ -4,6 +4,7 @@ import { useRecoilValue } from 'recoil';
 import { Button } from '@/components/vip-ui';
 import { useSetLoginModalState } from '@/store/common/hooks';
 import { selectorUserDetailState } from '@/store/user/selectors';
+import { handleClipboard } from '@/utils/clipboard';
 const User = () => {
     const navigate = useNavigate();
     const setIsShowLoginModal = useSetLoginModalState();
@@ -15,9 +16,18 @@ const User = () => {
             setIsShowLoginModal(true);
         }
     };
+
     const handleLogin = () => {
         setIsShowLoginModal(true);
     };
+
+    const handleCopy = (e) => {
+        const currentUrl = window.location.origin;
+        const url = new URL(currentUrl);
+        url.searchParams.set('c', userDetailState?.invitationCode); // 将 'key' 的值设置为 'value'
+        handleClipboard(url.toString(), e);
+    };
+
     return (
         <div className="w-full h-full pt-[24px]">
             <div className="mx-[12px] rounded-[12px] overflow-hidden">
@@ -79,16 +89,33 @@ const User = () => {
                     </div>
                 </div>
             </div>
-            {/* <div className="mt-[24px]">
-                <div className="mx-[16px] py-[12px] flex justify-between items-center border-b-1 border-solid border-[#333]">
-                    <span>常见问题</span>
-                    <ChevronRightIcon className="w-[24px] h-[24px]" />
+            <div className="mt-[24px]">
+                <div
+                    className="mx-[16px] px-[16px] py-[12px] flex justify-between items-center border-b-1 border-solid border-[#333]"
+                    onClick={(e) => handleCopy(e)}
+                >
+                    <div className="flex items-center text-[16px] font-bold">
+                        <img
+                            className="w-[24px] h-[24px] mr-[8px]"
+                            src={require('@/assets/images/user/invitation-code.png')}
+                        />
+                        <span>邀请码</span>
+                    </div>
+                    <div className="flex items-center">
+                        <span className="px-[8px] py-[2px] bg-[#2c2c2c] rounded-full mr-[4px]">
+                            {userDetailState?.invitationCode}
+                        </span>
+                        <img
+                            className="w-[18px] h-[18px] mr-[8px]"
+                            src={require('@/assets/images/user/copy.png')}
+                        />
+                    </div>
                 </div>
-                <div className="mx-[16px] py-[12px] flex justify-between items-center border-b-1 border-solid border-[#333]">
+                {/* <div className="mx-[16px] py-[12px] flex justify-between items-center border-b-1 border-solid border-[#333]">
                     <span>联系客服</span>
                     <ChevronRightIcon className="w-[24px] h-[24px]" />
-                </div>
-            </div> */}
+                </div> */}
+            </div>
         </div>
     );
 };
