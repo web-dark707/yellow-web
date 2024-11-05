@@ -20,7 +20,7 @@ const RegisterModal: FC<RegisterModalProps> = () => {
     const setIsShowRegisterModal = useSetRegisterState();
     const setIsShowLoginModal = useSetLoginModalState();
     const [loginDisabled, setLoginDisabled] = useState(true);
-    const invitationCode = getQueryString('code'); // 邀请码
+    const invitationCodeBy = getQueryString('c') ?? ''; // 邀请码
     const { mutateAsync: mutateRegister, isLoading } = useMutation(register);
     const isShowRegisterModal = useRecoilValue(selectorRegisterState);
 
@@ -35,7 +35,7 @@ const RegisterModal: FC<RegisterModalProps> = () => {
             username: values.username,
             password: values.password,
             captcha: values.captcha,
-            invitationCode,
+            invitationCodeBy,
         };
         const res = await mutateRegister(params);
         if (res.code === 200) {

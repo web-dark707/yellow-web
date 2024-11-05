@@ -387,3 +387,11 @@ export function processUSDTAddress(address) {
         return `${prefix}****${suffix}`;
     }
 }
+
+// 设置地址栏参数
+export const setSearchParams = (key: string, value: string) => {
+    const currentUrl = window.location.href;
+    const url = new URL(currentUrl);
+    url.searchParams.set(key, value); // 将 'key' 的值设置为 'value'
+    window.history.pushState({}, '', url);
+};

@@ -4,7 +4,10 @@ import { useMutation } from '@tanstack/react-query';
 import { Button, Input, Overlay } from '@/components/vip-ui';
 import './index.scss';
 import Checkbox from '@/components/Checkbox';
-import { selectorLoginModalState } from '@/store/common/selectors';
+import {
+    selectorLoginModalState,
+    selectorRegisterState,
+} from '@/store/common/selectors';
 import {
     useSetLoginModalState,
     useSetRegisterState,
@@ -16,6 +19,7 @@ import { LoginParams } from '@/types/api/login';
 import { useSetTokenInfoState } from '@/store/user/hooks';
 import { getStorage, setStorage } from '@/utils/storage';
 import UserToken from '@/common/token';
+import { useUpdateEffect } from '@/hooks';
 type LoginModalProps = {};
 
 const LoginModal: FC<LoginModalProps> = () => {
@@ -24,8 +28,8 @@ const LoginModal: FC<LoginModalProps> = () => {
 
     const setIsShowLoginModal = useSetLoginModalState();
     const setIsShowRegisterModal = useSetRegisterState();
-
     const [loginDisabled, setLoginDisabled] = useState(true);
+    const isShowRegisterModal = useRecoilValue(selectorRegisterState);
     const isShowLoginModal = useRecoilValue(selectorLoginModalState);
     const [checkState, setCheckState] = useState(false);
     const { mutateAsync: mutateLogin, isLoading } = useMutation(login);
@@ -64,6 +68,13 @@ const LoginModal: FC<LoginModalProps> = () => {
     useEffect(() => {
         resetCaptchaImage();
     }, [resetCaptchaImage]);
+
+    useUpdateEffect(() => {
+        if (!isShowRegisterModal) {
+            resetCaptchaImage();
+        }
+    }, [isShowRegisterModal]);
+
     return (
         <Overlay
             visible={isShowLoginModal}

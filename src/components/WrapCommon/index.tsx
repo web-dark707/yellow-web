@@ -15,6 +15,8 @@ import {
 import { getDictList, getUserDetails } from '@/api/home';
 import { useSetUserDetailState } from '@/store/user/hooks';
 import { useSetVideoCategoryState } from '@/store/config/hooks';
+import { getQueryString, setSearchParams } from '@/utils/tools';
+import { useSetRegisterState } from '@/store/common/hooks';
 import Iframe from '../Iframe';
 import LoginModal from '../Modals/Login';
 import RegisterModal from '../Modals/Register';
@@ -25,9 +27,11 @@ type WarpCommonProps = {};
 export const WarpCommon = ({
     children,
 }: PropsWithChildren<WarpCommonProps>) => {
+    const invitationCodeBy = getQueryString('c') ?? ''; // 邀请码
     const loginState = useRecoilValue(selectorTokenInfoState);
     const isShowRegisterModal = useRecoilValue(selectorRegisterState);
     const isShowLoginModal = useRecoilValue(selectorLoginModalState);
+    const setIsShowRegisterModal = useSetRegisterState();
     const setVideoCategoryState = useSetVideoCategoryState();
     const setUserDetailState = useSetUserDetailState();
     const { mutateAsync: mutateGetDictList } = useMutation(getDictList);
@@ -38,6 +42,7 @@ export const WarpCommon = ({
             const res = await mutateGetUserDetails({ id: loginState.loginId });
             if (res.code === 200) {
                 setUserDetailState(res.data.record);
+                setSearchParams('c', res.data.record.invitationCode);
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -57,6 +62,13 @@ export const WarpCommon = ({
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mutateGetDictList]);
+
+    useEffect(() => {
+        if (invitationCodeBy && !loginState) {
+            setIsShowRegisterModal(true);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         getDictDetail();

@@ -8,7 +8,8 @@ export interface RegisterParams {
     captcha: string;
     username: string;
     password: string;
-    invitationCode: string;
+    // invitationCode: string;
+    invitationCodeBy: string;
 }
 
 export interface LoginResult {
