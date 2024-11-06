@@ -22,7 +22,7 @@ const VideoPlayer = ({ details }: Props) => {
                     : IMAGE_URL + details.snapshot, //封面图
                 url: IMAGE_URL + details.url,
                 fullscreen: {
-                    rotateFullscreen: true,
+                    // rotateFullscreen: true,
                 },
                 plugins: [ForwardPlugin],
                 playbackRate: {

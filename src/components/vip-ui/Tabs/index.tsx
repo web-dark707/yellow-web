@@ -136,8 +136,9 @@ const Tabs = (props: PropsWithChildren<TabsProps>) => {
                 >
                     <div
                         ref={scrollRef}
+                        draggable={false}
                         className={classNames(
-                            'tab-scroll-container h-45px px-16px pt-15px mb-16px whitespace-nowrap overflow-x-scroll border-b-1 border-[#252220] border-solid',
+                            'tab-scroll-container h-45px px-16px pt-15px mb-16px whitespace-nowrap overflow-x-scroll overflow-y-hidden border-b-1 border-[#252220] border-solid',
                             tabsClassName,
                         )}
                     >

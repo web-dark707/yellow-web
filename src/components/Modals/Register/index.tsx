@@ -9,10 +9,10 @@ import {
 } from '@/store/common/hooks';
 import { selectorRegisterState } from '@/store/common/selectors';
 import { getCaptchaImage, register } from '@/api/login';
-import { getQueryString } from '@/utils/tools';
 import { useForm } from '@/components/vip-ui/Form';
 import { isNumberLetter } from '@/utils/validate';
 import { RegisterParams } from '@/types/api/login';
+import { getStorage } from '@/utils/storage';
 type RegisterModalProps = {};
 
 const RegisterModal: FC<RegisterModalProps> = () => {
@@ -20,7 +20,7 @@ const RegisterModal: FC<RegisterModalProps> = () => {
     const setIsShowRegisterModal = useSetRegisterState();
     const setIsShowLoginModal = useSetLoginModalState();
     const [loginDisabled, setLoginDisabled] = useState(true);
-    const invitationCodeBy = getQueryString('c') ?? ''; // 邀请码
+    const invitationCodeBy = (getStorage('invitationCodeBy') as string) ?? '';
     const { mutateAsync: mutateRegister, isLoading } = useMutation(register);
     const isShowRegisterModal = useRecoilValue(selectorRegisterState);
 

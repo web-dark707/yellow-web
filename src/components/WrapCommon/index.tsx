@@ -17,6 +17,7 @@ import { useSetUserDetailState } from '@/store/user/hooks';
 import { useSetVideoCategoryState } from '@/store/config/hooks';
 import { getQueryString, setSearchParams } from '@/utils/tools';
 import { useSetRegisterState } from '@/store/common/hooks';
+import { setStorage } from '@/utils/storage';
 import Iframe from '../Iframe';
 import LoginModal from '../Modals/Login';
 import RegisterModal from '../Modals/Register';
@@ -66,6 +67,7 @@ export const WarpCommon = ({
     useEffect(() => {
         if (invitationCodeBy && !loginState) {
             setIsShowRegisterModal(true);
+            setStorage('invitationCodeBy', invitationCodeBy);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

@@ -5,6 +5,7 @@ import VConsole from 'vconsole';
 import { ENV_TYPE } from './config/error';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import '@/utils/rem';
 import '@/locales'; //国际化
 import 'swiper/swiper.css';
 import 'swiper/css/pagination';
