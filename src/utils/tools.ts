@@ -396,17 +396,19 @@ export const setSearchParams = (key: string, value: string) => {
     window.history.pushState({}, '', url);
 };
 
-export function appendFormData(_data) {
-    const data = new FormData();
-    for (const key in _data) {
-        let value = _data[key];
-        if (
-            _data[key] instanceof Object &&
-            !['Blob', 'File'].includes(_data[key].constructor.name)
-        ) {
-            value = JSON.stringify(_data[key]);
+export function formatFormData(data, formData: FormData) {
+    Object.keys(data).map((key) => {
+        if (data[key] !== null && data[key] !== undefined && data[key] !== '') {
+            if (Array.isArray(data[key])) {
+                data[key].map((it) => {
+                    formData.append(key, it);
+                });
+            } else if (isObject(data[key])) {
+                formData.append(key, JSON.stringify(data[key]));
+            } else {
+                formData.append(String(key), String(data[key]));
+            }
         }
-        data.append(key, value);
-    }
-    return data;
+    });
+    return formData;
 }

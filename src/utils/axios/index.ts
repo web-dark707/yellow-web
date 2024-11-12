@@ -9,7 +9,7 @@ import type { AxiosInterceptor, CreateAxiosOptions } from './axiosConfig';
 import { iAxios } from './iAxios';
 import { checkStatus } from './axiosStatus';
 import { errorData } from './errorConfig';
-import { appendFormData } from '../tools';
+import { formatFormData } from '../tools';
 
 /**
  * @description:拦截器配置
@@ -79,8 +79,10 @@ const interceptor: AxiosInterceptor = {
         }
 
         if (config?.headers?.['Content-Type'] === ContentTypeEnum.FORM_DATA) {
+            const formData = new FormData();
             if (config?.data) {
-                const formData = appendFormData(config?.data);
+                config.data = formatFormData(config?.data, formData);
+            } else {
                 config.data = formData;
             }
         }
