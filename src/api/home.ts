@@ -4,6 +4,7 @@ import {
     AnchorListResult,
     DictListParams,
     DictResult,
+    TrackParams,
     UserResult,
     VideoDetailsResult,
     VideoListResult,
@@ -18,6 +19,7 @@ enum Api {
     API_DICT_LIST = '/api/dictList',
     API_ANCHOR_LIST = '/api/anchorList',
     API_ANCHOR_DETAIL = '/api/anchorDetail',
+    API_TRACK = '/api/track',
 }
 
 // 获取视频列表
@@ -57,6 +59,14 @@ export const getAnchorList = (params: AnchorListParams) => {
 export const getAnchorDetail = (params: { id: string }) => {
     return deffHttp.post<AnchorDetail>({
         url: Api.API_ANCHOR_DETAIL,
+        data: params,
+    });
+};
+
+// 提交埋点信息
+export const getTrack = (params: TrackParams) => {
+    return deffHttp.post<string>({
+        url: Api.API_TRACK,
         data: params,
     });
 };

@@ -25,7 +25,6 @@ type LoginModalProps = {};
 const LoginModal: FC<LoginModalProps> = () => {
     const [form] = useForm();
     const setTokenInfo = useSetTokenInfoState();
-
     const setIsShowLoginModal = useSetLoginModalState();
     const setIsShowRegisterModal = useSetRegisterState();
     const [loginDisabled, setLoginDisabled] = useState(true);
@@ -94,7 +93,7 @@ const LoginModal: FC<LoginModalProps> = () => {
                         });
                     }}
                 >
-                    {/* -------------------------------------------户口号--------------------------------------------- */}
+                    {/* -------------------------------------------账号--------------------------------------------- */}
                     <Form.Item
                         field="username"
                         className="w-full"
@@ -155,7 +154,7 @@ const LoginModal: FC<LoginModalProps> = () => {
                                 },
                             ]}
                         >
-                            {/* -------------------------------------------密码--------------------------------------------- */}
+                            {/* -------------------------------------------验证码--------------------------------------------- */}
                             <Input
                                 validator={isNumberLetter}
                                 placeholder="验证码"

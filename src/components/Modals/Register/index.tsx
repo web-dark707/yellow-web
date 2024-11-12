@@ -13,6 +13,8 @@ import { useForm } from '@/components/vip-ui/Form';
 import { isNumberLetter } from '@/utils/validate';
 import { RegisterParams } from '@/types/api/login';
 import { getStorage } from '@/utils/storage';
+import { getTrack } from '@/api/home';
+import { TrackParams } from '@/types/api/home';
 type RegisterModalProps = {};
 
 const RegisterModal: FC<RegisterModalProps> = () => {
@@ -23,7 +25,7 @@ const RegisterModal: FC<RegisterModalProps> = () => {
     const invitationCodeBy = (getStorage('invitationCodeBy') as string) ?? '';
     const { mutateAsync: mutateRegister, isLoading } = useMutation(register);
     const isShowRegisterModal = useRecoilValue(selectorRegisterState);
-
+    const { mutateAsync: mutateGetTrack } = useMutation(getTrack);
     const { mutateAsync: mutateGetCaptchaImage, data } =
         useMutation(getCaptchaImage);
     const handleLogin = () => {
@@ -51,6 +53,19 @@ const RegisterModal: FC<RegisterModalProps> = () => {
     useEffect(() => {
         resetCaptchaImage();
     }, [resetCaptchaImage]);
+
+    useEffect(() => {
+        console.log(invitationCodeBy);
+
+        const params: TrackParams = {
+            event: invitationCodeBy
+                ? 'click_regist_url'
+                : 'click_regist_button',
+            properties: { invitationCodeBy },
+        };
+        mutateGetTrack(params);
+    }, [invitationCodeBy, mutateGetTrack]);
+
     return (
         <Overlay
             visible={isShowRegisterModal}
@@ -70,7 +85,6 @@ const RegisterModal: FC<RegisterModalProps> = () => {
                         });
                     }}
                 >
-                    {/* -------------------------------------------户口号--------------------------------------------- */}
                     <Form.Item
                         field="username"
                         className="w-full"
@@ -160,7 +174,7 @@ const RegisterModal: FC<RegisterModalProps> = () => {
                                 },
                             ]}
                         >
-                            {/* -------------------------------------------密码--------------------------------------------- */}
+                            {/* -------------------------------------------验证码--------------------------------------------- */}
                             <Input
                                 validator={isNumberLetter}
                                 placeholder="验证码"

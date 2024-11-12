@@ -395,3 +395,18 @@ export const setSearchParams = (key: string, value: string) => {
     url.searchParams.set(key, value); // 将 'key' 的值设置为 'value'
     window.history.pushState({}, '', url);
 };
+
+export function appendFormData(_data) {
+    const data = new FormData();
+    for (const key in _data) {
+        let value = _data[key];
+        if (
+            _data[key] instanceof Object &&
+            !['Blob', 'File'].includes(_data[key].constructor.name)
+        ) {
+            value = JSON.stringify(_data[key]);
+        }
+        data.append(key, value);
+    }
+    return data;
+}

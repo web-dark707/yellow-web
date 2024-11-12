@@ -130,3 +130,12 @@ export interface DictListItem {
     updateBy: string;
     updateTime: number;
 }
+
+export interface TrackParams {
+    event: 'click_regist_button' | 'click_regist_url' | 'click_change';
+    properties?: {
+        invitationCodeBy: string;
+    };
+    deviceType?: string;
+    deviceUuid?: string;
+}
