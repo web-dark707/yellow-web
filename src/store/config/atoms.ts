@@ -21,3 +21,9 @@ export const videoCategoryState = atom<VideoCategoryType[]>({
     key: 'videoCategoryState',
     default: [],
 });
+
+// 视频分类
+export const currentPageState = atom<number>({
+    key: 'currentPageState',
+    default: 1,
+});

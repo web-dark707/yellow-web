@@ -1,4 +1,4 @@
-import React, { FC, Suspense, useRef } from 'react';
+import React, { FC, Suspense } from 'react';
 import { RouteProps } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
@@ -34,10 +34,8 @@ export const WrapperRouteComponent: FC<WrapperRouteProps> = ({
     ...props
 }) => {
     const locale = useRecoilValue(localeState);
-    const myref = useRef(null);
     const WitchRoute = auth ? PrivateRoute : PublicRoute;
     // 顶部导航返回不显示的页面
-    const callPathList = ['/userCenter', '/record'];
 
     return (
         <HelmetProvider>
@@ -59,11 +57,7 @@ export const WrapperRouteComponent: FC<WrapperRouteProps> = ({
                 <div
                     className={classNames(
                         'flex-1 overflow-y-auto overflow-x-hidden contents-wrap scroll-dom',
-                        {
-                            'pb-60px': tabBar,
-                        },
                     )}
-                    ref={myref}
                 >
                     <Suspense
                         fallback={

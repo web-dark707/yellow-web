@@ -55,8 +55,6 @@ const RegisterModal: FC<RegisterModalProps> = () => {
     }, [resetCaptchaImage]);
 
     useEffect(() => {
-        console.log(invitationCodeBy);
-
         const params: TrackParams = {
             event: invitationCodeBy
                 ? 'click_regist_url'

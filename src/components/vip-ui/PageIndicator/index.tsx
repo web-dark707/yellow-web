@@ -5,16 +5,18 @@ import React, {
     useEffect,
     useImperativeHandle,
     useRef,
-    useState,
 } from 'react';
 import { CaretLeftIcon, CaretRightIcon } from '@radix-ui/react-icons';
 import classNames from 'classnames';
+import { useRecoilValue } from 'recoil';
 import {
     PageIndicatorProps,
     PageIndicatorRef,
 } from '@/types/vip-ui/pageIndicator';
 import { useUpdateEffect } from '@/hooks';
 import { isInteger } from '@/utils/validate';
+import { selectorCurrentPageState } from '@/store/config/selectors';
+import { useCurrentPageState } from '@/store/config/hooks';
 import Input from '../Input';
 
 const PageIndicator = forwardRef(
@@ -22,62 +24,54 @@ const PageIndicator = forwardRef(
         props: PropsWithChildren<PageIndicatorProps>,
         ref: Ref<PageIndicatorRef>,
     ) => {
-        const {
-            className,
-            onChange,
-            total,
-            isReset = false,
-            currentValue = 1,
-        } = props;
+        const { className, onChange, total, isReset = false } = props;
         const domRef = useRef<HTMLDivElement | null>(null);
-        const [current, setCurrent] = useState<number>(currentValue);
+        const currentPage = useRecoilValue(selectorCurrentPageState);
+        const setCurrentPage = useCurrentPageState();
+
         useImperativeHandle(ref, () => ({
             dom: domRef.current,
         }));
 
         const handlePrev = () => {
-            if (current !== 1) {
-                setCurrent(current - 1);
+            if (currentPage !== 1) {
+                setCurrentPage(currentPage - 1);
             } else return;
         };
         const handleConfirm = (e: any) => {
             e.target.blur();
             if (e.target.value && e.target.value !== 0) {
-                setCurrent(Number(e.target.value));
+                setCurrentPage(Number(e.target.value));
             }
         };
 
         const handleNext = () => {
-            if (current !== total) {
-                setCurrent(current + 1);
+            if (currentPage !== total) {
+                setCurrentPage(currentPage + 1);
             } else return;
         };
 
         const initNumList = () => {
-            setCurrent(1);
+            setCurrentPage(1);
         };
 
         const handleInput = (e) => {
             if (e.target.value && e.target.value > total) {
                 e.target.value = total;
-                setCurrent(total);
+                setCurrentPage(total);
             }
         };
 
         useEffect(() => {
-            onChange && onChange(current);
+            onChange && onChange(currentPage);
             // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, [current]);
+        }, [currentPage]);
 
         useUpdateEffect(() => {
             if (isReset) {
                 initNumList();
             }
         }, [isReset]);
-
-        useEffect(() => {
-            initNumList();
-        }, []);
 
         return (
             <div className="w-full flex justify-center">
@@ -86,7 +80,7 @@ const PageIndicator = forwardRef(
                     onClick={handlePrev}
                     className={classNames(
                         'w-[32px] h-[32px] bg-primaryColor rounded-lg',
-                        current === 1 && 'opacity-55',
+                        currentPage === 1 && 'opacity-55',
                     )}
                 />
                 <div className="h-[32px] w-[100px] px-[4px] mx-[8px] flex items-center border-1 border-solid border-primaryColor rounded-md overflow-hidden font-bold">
@@ -98,7 +92,7 @@ const PageIndicator = forwardRef(
                             spellCheck: 'false',
                         }}
                         type="number"
-                        value={String(current)}
+                        value={String(currentPage)}
                         className="h-full"
                         inputClass="!px-0 text-center"
                         isClear={false}
@@ -115,7 +109,7 @@ const PageIndicator = forwardRef(
                     onClick={handleNext}
                     className={classNames(
                         'w-[32px] h-[32px] bg-primaryColor rounded-lg',
-                        current === total && 'opacity-55',
+                        currentPage === total && 'opacity-55',
                     )}
                 />
             </div>

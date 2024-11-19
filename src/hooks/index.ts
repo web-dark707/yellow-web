@@ -8,6 +8,7 @@ import useUnmount from './useUnmount';
 import useWebSocket from './useWebSocket';
 import useOverFlowScroll from './useOverFlowScroll';
 import useCountdown from './useCountDown';
+import useTouch from './useTouch';
 export {
     useUpdate,
     usePrevious,
@@ -19,4 +20,5 @@ export {
     useWebSocket,
     useOverFlowScroll,
     useCountdown,
+    useTouch,
 };

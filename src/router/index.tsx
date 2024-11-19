@@ -12,7 +12,7 @@ const Player = lazy(() => import('@/pages/Player'));
 const Pay = lazy(() => import('@/pages/Pay'));
 const User = lazy(() => import('@/pages/User'));
 const Anchor = lazy(() => import('@/pages/Anchor'));
-
+const ShortVideo = lazy(() => import('@/pages/ShortVideo'));
 const NotAuthority = lazy(() => import('@/components/ResultPage/NotAuthority'));
 const NotFound = lazy(() => import('@/components/ResultPage/NotFound'));
 const routeList: RouteObject[] = [
@@ -25,6 +25,17 @@ const routeList: RouteObject[] = [
         element: (
             <WrapperRouteComponent
                 element={<Home />}
+                isMotion={false}
+                tabBar
+                navBar
+            />
+        ),
+    },
+    {
+        path: '/shortVideo',
+        element: (
+            <WrapperRouteComponent
+                element={<ShortVideo />}
                 isMotion={false}
                 tabBar
                 navBar

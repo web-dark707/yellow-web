@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
-import { useSetSearchStateState } from '@/store/config/hooks';
+import {
+    useCurrentPageState,
+    useSetSearchStateState,
+} from '@/store/config/hooks';
 import Search from './Search';
 const Header = () => {
     const navigate = useNavigate();
     const setSearchStateState = useSetSearchStateState();
     const [isShowSearch, setIsShowSearch] = useState(false);
     // const [isShowType, setIsShowType] = useState(false);
+    const setCurrentPage = useCurrentPageState();
 
     const handleClick = () => {
         navigate('/home');
-        setSearchStateState(null);
+        setSearchStateState({});
+        setCurrentPage(1);
     };
 
     return (

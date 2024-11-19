@@ -1,6 +1,11 @@
 import { useSetRecoilState } from 'recoil';
 import { setStorage } from '@/utils/storage';
-import { configState, searchState, videoCategoryState } from './atoms';
+import {
+    configState,
+    currentPageState,
+    searchState,
+    videoCategoryState,
+} from './atoms';
 import { ConfigType, SearchType, VideoCategoryType } from './types';
 
 export const useSetConfig = () => {
@@ -28,6 +33,14 @@ export const useSetSearchStateState = () => {
 export const useSetVideoCategoryState = () => {
     const setValue = useSetRecoilState(videoCategoryState);
     return (state: VideoCategoryType[]) => {
+        setValue(state);
+        return state;
+    };
+};
+
+export const useCurrentPageState = () => {
+    const setValue = useSetRecoilState(currentPageState);
+    return (state: number) => {
         setValue(state);
         return state;
     };

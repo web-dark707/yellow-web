@@ -4,6 +4,7 @@ import {
     AnchorListResult,
     DictListParams,
     DictResult,
+    ShortVideoListResult,
     TrackParams,
     UserResult,
     VideoDetailsResult,
@@ -20,6 +21,7 @@ enum Api {
     API_ANCHOR_LIST = '/api/anchorList',
     API_ANCHOR_DETAIL = '/api/anchorDetail',
     API_TRACK = '/api/track',
+    API_SHORT_VIDEO_LIST = '/api/shortVideoList',
 }
 
 // 获取视频列表
@@ -68,5 +70,12 @@ export const getTrack = (params: TrackParams) => {
     return deffHttp.post<string>({
         url: Api.API_TRACK,
         data: params,
+    });
+};
+
+// 获取视频列表
+export const getShortVideoList = (params: VideoParams) => {
+    return deffHttp.post<ShortVideoListResult>({
+        url: Api.API_SHORT_VIDEO_LIST,
     });
 };

@@ -4,17 +4,14 @@ import React, {
     Ref,
     useImperativeHandle,
     useEffect,
-    useCallback,
     useState,
     PropsWithChildren,
 } from 'react';
-import { throttle as lodashThrottle } from 'lodash';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { ListStatus, ListProps, ListRef } from '@/types/vip-ui/list';
 import { useMemoizedFn, useUpdateEffect } from '@/hooks';
 import { Empty, Loading } from '@/components/vip-ui';
-import { pxToVw } from '@/config/pxtovw';
 import { randomString } from '@/utils/tools';
 import PageIndicator from '../PageIndicator';
 
@@ -46,51 +43,15 @@ const List = forwardRef(
         const [nowStatus, setNowStatus] = useState<ListStatus>('default');
         const getDataRun = useMemoizedFn(getData);
         const { t } = useTranslation();
-        const observer = useRef(null);
         const domId = useRef(randomString(10));
 
         useImperativeHandle(ref, () => ({
             dom: domRef.current,
         }));
 
-        const handleContainerScroll = useCallback(() => {
-            // 滚动到底部执行
-            onEndReached && onEndReached();
-            //上一次的请求没有成功，不再请求
-            if (hasMore && !isLoading && !isError) {
-                getDataRun();
-            }
-        }, [getDataRun, hasMore, isError, isLoading, onEndReached]);
-
-        const handleChange = (page?: number) => {
+        const handleChange = (page: number) => {
             getDataRun(page);
         };
-
-        const scrollFunc = throttle
-            ? lodashThrottle(handleContainerScroll, throttle)
-            : handleContainerScroll;
-
-        useEffect(() => {
-            if (!pageIndicator) {
-                const scrollDomRef = document.getElementById(domId.current);
-                observer.current = new IntersectionObserver((entries) => {
-                    if (entries[0].isIntersecting) {
-                        scrollFunc();
-                    }
-                });
-
-                if (observer.current && scrollDomRef) {
-                    observer.current.observe(scrollDomRef);
-                }
-
-                return () => {
-                    if (observer.current) {
-                        observer.current.disconnect();
-                    }
-                };
-            }
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, [scrollFunc]);
 
         // 初始化请求
         useEffect(() => {
@@ -157,16 +118,6 @@ const List = forwardRef(
                         </div>
                     ) : (
                         errorArea
-                    );
-                default:
-                    return (
-                        <div
-                            className="w-full"
-                            id={domId.current}
-                            style={{
-                                height: pxToVw(threshold),
-                            }}
-                        ></div>
                     );
             }
         };

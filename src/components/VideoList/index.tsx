@@ -8,17 +8,14 @@ import { List } from '../vip-ui';
 import VideoPlayerItem from './VideoPlayerItem';
 interface Props {
     params: VideoParams;
+    pageIndicator?: boolean;
 }
 const VideoList = (props: Props) => {
-    const { params } = props;
+    const { params, pageIndicator = true } = props;
     const listRef = useRef<HTMLDivElement>();
     const [isReset, setIsReset] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const [list, setList] = useState<VideoListItem[]>([]);
-    // const [pageInfo, setPageInfo] = useState({
-    //     pageNum: 1,
-    //     pageSize: 10,
-    // });
 
     const {
         mutateAsync: mutateGetVideoList,
@@ -43,10 +40,6 @@ const VideoList = (props: Props) => {
         if (res.code === 200) {
             if (res?.data?.records?.length) {
                 setHasMore(true);
-                // setPageInfo((prev) => ({
-                //     ...prev,
-                //     pageNum: pageInfo.pageNum + 1,
-                // }));
                 setList(res?.data?.records);
                 document.getElementsByClassName('scroll-dom')[0].scrollTo({
                     top: 0,
@@ -68,7 +61,7 @@ const VideoList = (props: Props) => {
     return (
         <div ref={listRef} className="h-full">
             <List
-                pageIndicator
+                pageIndicator={pageIndicator}
                 getData={handleCreditList}
                 hasMore={hasMore}
                 isLoading={isLoading}
@@ -78,7 +71,7 @@ const VideoList = (props: Props) => {
                 total={
                     data?.data?.total ? Math.ceil(data?.data?.total / 10) : 0
                 }
-                className="mt-16px flex justify-evenly flex-wrap"
+                className="mt-16px flex justify-evenly flex-wrap pb-[40px]"
             >
                 {list.length === 0 && isLoading
                     ? [1, 2, 3, 4].map((_, index) => (

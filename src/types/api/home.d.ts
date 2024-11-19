@@ -139,3 +139,26 @@ export interface TrackParams {
     deviceType?: string;
     deviceUuid?: string;
 }
+
+export interface ShortVideoListItem {
+    anchorId: string;
+    chargeType: number;
+    clipUrl: string;
+    content: string;
+    cover: string;
+    createTime: number;
+    createUserName: string;
+    duration: string;
+    id: string;
+    name: string;
+    price: number;
+    size: number;
+    snapshot: string;
+    tag: string;
+    type: number;
+    updateTime: number;
+    updateUserName: string;
+    url: string;
+}
+
+export type ShortVideoListResult = CommonList<ShortVideoListItem>;

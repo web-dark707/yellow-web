@@ -1,7 +1,10 @@
 import React, { FC, useEffect, useState, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
-import { useSetSearchStateState } from '@/store/config/hooks';
+import {
+    useCurrentPageState,
+    useSetSearchStateState,
+} from '@/store/config/hooks';
 
 type TabBarProps = {};
 
@@ -19,6 +22,7 @@ const TabBar: FC<TabBarProps> = () => {
     const location = useLocation();
     const [acIndex, setAcIndex] = useState(0);
     const setSearchStateState = useSetSearchStateState();
+    const setCurrentPage = useCurrentPageState();
 
     const tabBarList = useMemo<TabBarItem[]>(
         () => [
@@ -29,8 +33,17 @@ const TabBar: FC<TabBarProps> = () => {
                 selectedIcon: require('@/assets/images/icon/tab/home1.png'),
                 unselectedIcon: require('@/assets/images/icon/tab/home0.png'),
                 onClick: () => {
-                    setSearchStateState(null);
+                    setSearchStateState({});
+                    setCurrentPage(1);
                 },
+            },
+            {
+                key: 'shortVideo',
+                link: '/shortVideo',
+                label: '短视频',
+                selectedIcon: require('@/assets/images/icon/tab/shortvideo1.png'),
+                unselectedIcon: require('@/assets/images/icon/tab/shortvideo0.png'),
+                onClick: () => {},
             },
             {
                 key: 'user',
@@ -41,7 +54,8 @@ const TabBar: FC<TabBarProps> = () => {
                 onClick: () => {},
             },
         ],
-        [setSearchStateState],
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [],
     );
     const handleClick = (index: number) => {
         setAcIndex(index);

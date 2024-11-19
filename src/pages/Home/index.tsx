@@ -3,7 +3,10 @@ import { useRecoilValue } from 'recoil';
 import { Cross2Icon } from '@radix-ui/react-icons';
 import { useNavigate } from 'react-router-dom';
 import VideoList from '@/components/VideoList';
-import { useSetSearchStateState } from '@/store/config/hooks';
+import {
+    useCurrentPageState,
+    useSetSearchStateState,
+} from '@/store/config/hooks';
 import { formatLabel } from '@/common/format';
 import {
     selectorSearchState,
@@ -17,11 +20,17 @@ const Home = () => {
     const setSearchStateState = useSetSearchStateState();
     const searchState = useRecoilValue(selectorSearchState);
     const videoCategoryState = useRecoilValue(selectorVideoCategoryState);
+    const setCurrentPage = useCurrentPageState();
+
     const onSearch = (i, val: string) => {
         setSearchStateState({
             type: val,
         });
         navigate('/home');
+    };
+    const handleClearSearch = () => {
+        setSearchStateState({ type: undefined });
+        setCurrentPage(1);
     };
     return (
         <div className="w-full h-full">
@@ -43,7 +52,7 @@ const Home = () => {
                         <span className="mr-[8px]">
                             {formatLabel(videoCategoryState, searchState?.type)}
                         </span>
-                        <Cross2Icon onClick={() => setSearchStateState(null)} />
+                        <Cross2Icon onClick={handleClearSearch} />
                     </div>
                 )}
             </div>

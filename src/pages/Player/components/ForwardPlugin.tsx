@@ -40,34 +40,21 @@ export default class ForwardPlugin extends Plugin {
 
     afterCreate() {
         const onRewindClick = () => {
-            console.log(Math.max(this.player.currentTime - 15, 0));
-
             this.player.currentTime = Math.max(this.player.currentTime - 15, 0);
         };
         const onForwardClick = () => {
-            console.log(
-                Math.min(this.player.currentTime + 15, this.player.duration),
-            );
-
             this.player.currentTime = Math.min(
                 this.player.currentTime + 15,
                 this.player.duration,
             );
         };
-        // // 对当前插件根节点内部类名为.icon的元素绑定click事件
+        // 对当前插件根节点内部类名为.icon的元素绑定click事件
         this.bind('.forward', 'click', onForwardClick);
         this.bind('.rewind', 'click', onRewindClick);
-
-        // // 对当前插件根节点绑定click事件
-        // this.bind('click', this.onClick);
-        // //TODO 插件实例化之后的一些逻辑
     }
 
     destroy() {
-        // this.unbind('.icon', 'click', this.onIconClick);
-        // this.unbind('click', this.onClick);
-        // this.icon = null;
-        // // 播放器销毁的时候一些逻辑
+        // 播放器销毁的时候一些逻辑
     }
 
     render() {

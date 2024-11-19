@@ -65,6 +65,7 @@ const Player = () => {
             </div>
             <div>
                 <VideoList
+                    pageIndicator={false}
                     params={{
                         orderByColumn: 'play_count',
                     }}
