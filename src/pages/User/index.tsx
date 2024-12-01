@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
+import { ChevronRightIcon } from '@radix-ui/react-icons';
 import { Button } from '@/components/vip-ui';
 import { useSetLoginModalState } from '@/store/common/hooks';
 import { selectorUserDetailState } from '@/store/user/selectors';
@@ -113,10 +114,10 @@ const User = () => {
                         </div>
                     </div>
                 )}
-                {/* <div className="mx-[16px] py-[12px] flex justify-between items-center border-b-1 border-solid border-[#333]">
+                <div className="mx-[16px] py-[12px] flex justify-between items-center border-b-1 border-solid border-[#333]">
                     <span>联系客服</span>
                     <ChevronRightIcon className="w-[24px] h-[24px]" />
-                </div> */}
+                </div>
             </div>
         </div>
     );

@@ -55,10 +55,12 @@ export const WarpCommon = ({
         });
         if (res.code === 200) {
             setVideoCategoryState(
-                res.data.records.map((it) => ({
-                    value: it.dictValue,
-                    label: it.dictLabel,
-                })),
+                res.data.records
+                    .filter((it) => it.dictValue !== '1')
+                    .map((it) => ({
+                        value: it.dictValue,
+                        label: it.dictLabel,
+                    })),
             );
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

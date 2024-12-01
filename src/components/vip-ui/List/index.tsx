@@ -12,7 +12,6 @@ import { useTranslation } from 'react-i18next';
 import { ListStatus, ListProps, ListRef } from '@/types/vip-ui/list';
 import { useMemoizedFn, useUpdateEffect } from '@/hooks';
 import { Empty, Loading } from '@/components/vip-ui';
-import { randomString } from '@/utils/tools';
 import PageIndicator from '../PageIndicator';
 
 const List = forwardRef(
@@ -20,8 +19,6 @@ const List = forwardRef(
         const {
             className = '',
             style,
-            threshold = 40,
-            throttle = 200,
             getData,
             isLoading,
             isError,
@@ -30,12 +27,10 @@ const List = forwardRef(
             noMoreArea,
             errorArea,
             onClick,
-            onEndReached,
             showEmpty = true,
             children,
             isReset = false,
             emptyIcon,
-            firstLoad = true,
             pageIndicator = false,
             total = 0,
         } = props;
@@ -43,7 +38,6 @@ const List = forwardRef(
         const [nowStatus, setNowStatus] = useState<ListStatus>('default');
         const getDataRun = useMemoizedFn(getData);
         const { t } = useTranslation();
-        const domId = useRef(randomString(10));
 
         useImperativeHandle(ref, () => ({
             dom: domRef.current,
@@ -52,11 +46,6 @@ const List = forwardRef(
         const handleChange = (page: number) => {
             getDataRun(page);
         };
-
-        // 初始化请求
-        useEffect(() => {
-            firstLoad && getDataRun();
-        }, [firstLoad, getDataRun]);
 
         // 加载状态
         useEffect(() => {

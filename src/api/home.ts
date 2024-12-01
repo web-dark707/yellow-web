@@ -77,5 +77,6 @@ export const getTrack = (params: TrackParams) => {
 export const getShortVideoList = (params: VideoParams) => {
     return deffHttp.post<ShortVideoListResult>({
         url: Api.API_SHORT_VIDEO_LIST,
+        data: params,
     });
 };

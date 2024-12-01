@@ -15,8 +15,10 @@ const Header = () => {
 
     const handleClick = () => {
         navigate('/home');
-        setSearchStateState({});
-        setCurrentPage(1);
+        if (location.pathname === '/home') {
+            setCurrentPage(1);
+            setSearchStateState({});
+        }
     };
 
     return (

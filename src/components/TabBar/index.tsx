@@ -33,8 +33,10 @@ const TabBar: FC<TabBarProps> = () => {
                 selectedIcon: require('@/assets/images/icon/tab/home1.png'),
                 unselectedIcon: require('@/assets/images/icon/tab/home0.png'),
                 onClick: () => {
-                    setSearchStateState({});
-                    setCurrentPage(1);
+                    if (location.pathname === '/home') {
+                        setCurrentPage(1);
+                        setSearchStateState({});
+                    }
                 },
             },
             {
@@ -54,8 +56,7 @@ const TabBar: FC<TabBarProps> = () => {
                 onClick: () => {},
             },
         ],
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [],
+        [setCurrentPage, setSearchStateState],
     );
     const handleClick = (index: number) => {
         setAcIndex(index);
