@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { VideoListItem } from '@/types/api/home';
 import { IMAGE_URL } from '@/common/constants';
@@ -9,9 +9,6 @@ interface Props {
 }
 const VideoPlayerItem = ({ videoItem }: Props) => {
     const navigate = useNavigate();
-    const videoRef = useRef(null);
-    const [isPlay, setIsPlay] = useState(false);
-    const handlePlay = () => {};
 
     const handleClick = () => {
         navigate(`/player?id=${videoItem.id}`);

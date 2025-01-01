@@ -33,6 +33,8 @@ const VideoList = (props: Props) => {
         const paramsTemp = {
             pageNum: page ?? 1,
             pageSize: 10,
+            orderByColumn: 'recommendation_count',
+            orderType: 'desc',
             ...params,
         };
         const res = await mutateGetVideoList(paramsTemp);
@@ -80,8 +82,8 @@ const VideoList = (props: Props) => {
                               className="w-[168px] h-[100px] mb-[12px]"
                           />
                       ))
-                    : list.map((item, i) => (
-                          <VideoPlayerItem key={i} videoItem={item} />
+                    : list.map((item) => (
+                          <VideoPlayerItem key={item.id} videoItem={item} />
                       ))}
             </List>
         </div>
