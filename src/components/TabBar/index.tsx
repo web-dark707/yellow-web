@@ -45,7 +45,9 @@ const TabBar: FC<TabBarProps> = () => {
                 label: '短视频',
                 selectedIcon: require('@/assets/images/icon/tab/shortvideo1.png'),
                 unselectedIcon: require('@/assets/images/icon/tab/shortvideo0.png'),
-                onClick: () => {},
+                onClick: () => {
+                    document.title = '短视频';
+                },
             },
             {
                 key: 'user',
@@ -56,7 +58,7 @@ const TabBar: FC<TabBarProps> = () => {
                 onClick: () => {},
             },
         ],
-        [setCurrentPage, setSearchStateState],
+        [location.pathname, setCurrentPage, setSearchStateState],
     );
     const handleClick = (index: number) => {
         setAcIndex(index);

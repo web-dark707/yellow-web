@@ -21,6 +21,15 @@ const Player = () => {
         mutateGetVideoDetails({ id });
     }, [id, mutateGetVideoDetails, navigate]);
 
+    useEffect(() => {
+        if (data?.data?.record.name) {
+            document.title = data.data.record.name;
+            return () => {
+                document.title = 'KKPRON';
+            };
+        }
+    }, [data?.data?.record.name]);
+
     return (
         <div className="w-full h-full ">
             <div className="w-full h-[60px] px-[24px] flex items-center">

@@ -23,6 +23,8 @@ const Home = () => {
     const setCurrentPage = useCurrentPageState();
 
     const onSearch = (i, val: string) => {
+        const title = videoCategoryState.find((it) => it.value === val).label;
+        document.title = title;
         setSearchStateState({
             type: val,
         });
